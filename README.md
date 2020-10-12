@@ -9,7 +9,7 @@ EtymoloGenius is a visual representation of the etymologies of all words in the 
 
 ## Wireframes
 
-![wireframe](/src/styles/images/wireframe.png)
+![wireframe](/src/images/wireframe.png)
 
 ## Architecture and Technologies
 The project will require the following technologies:

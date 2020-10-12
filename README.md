@@ -1,180 +1,31 @@
-1. create your new project directory and `cd` into it 
-2. `git init`
-3. create a simple `.gitignore`
-        
-        # .gitignore
+# EtymoloGenius
+## Background
+EtymoloGenius is a visual representation of the etymologies of all words in the English dictionary. Simply enter a correctly spelled English word, and EtymoloGenius will show you that word's evolution and journey to modern day English on an interactive world map.
 
-        /node_modules/
-4. `npm init` and follow prompts
-5. install dev dependencies
-   
-        npm install @babel/core @babel/preset-env autoprefixer babel-loader css-loader fibers file-loader mini-css-extract-plugin node-sass postcss-loader sass sass-loader style-loader url-loader webpack webpack-cli webpack-dev-server webpack-merge --save-dev
+## Functionality and MVP
+* Users will enter an English word
+* EtymoloGenius will display the years and locations where and when that word's ancestors were used
+* The map will populate in scaled time showing when that word was first used in English
 
-6. create basic `/src` subdirectory file structure
+## Wireframes
 
-        - src/
-            - index.js
-            styles/
-                - index.scss
-            scripts/
+![wireframe](/src/styles/images/wireframe.png)
 
-7. In your root directory, create `webpack.common.js`
+## Architecture and Technologies
+The project will require the following technologies:
+* JavaScript for rendering and logic
+* Merriam-Webster dictionary API for etymologies and first uses (https://dictionaryapi.com/products/json)
+* A world map API for displaying the word's etymology path
 
-    ```JavaScript
-    // webpack.common.js
+The scripts necessary for this project include:
+* map.js which will reset the map before every search; upon search it will light up the applicable countries with arrows showing the word's journey
+* word_info.js which will take the entry word and search the API for all relevant information, like definition, languages of origin, etc.
+* country.js (not sure if this is necessary, will allow for logic to show if a country is involved in the word's journey or not)
 
-    const path = require("path");
-    const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-    const outputDir = "./dist";
+## Implementation Timeline
+* Day 1: Have Webpack running and be able to functionally use the MW API; have a skeleton of all basic files outlined; make a search bar for word entry
+* Day 2: Implement a map API and be able to interact with it, having certain countries light up upon calling them through MW
+* Day 3: Implement animations showing the countries involved in a word's journey to English; scale the time by the amount of time between first uses in each language
 
-    module.exports = {
-    entry: path.resolve(__dirname, "src", "index.js"), //
-    output: {
-        path: path.join(__dirname, outputDir),
-        filename: "[name].js",
-        publicPath: "/dist/"
-    },
-    resolve: {
-        extensions: [".js"] // if we were using React.js, we would include ".jsx"
-    },
-    module: {
-        rules: [
-        {
-            test: /\.js$/, // if we were using React.js, we would use \.jsx?$/
-            use: {
-            loader: "babel-loader",
-            options: {
-                presets: ["@babel/preset-env"],
-                plugins: ["@babel/plugin-proposal-optional-chaining"],
-                exclude: /node_modules/
-            } // if we were using React.js, we would include "react"
-            }
-        },
-        {
-            test: /\.css$/,
-            use: [
-            {
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                // you can specify a publicPath here
-                // by default it uses publicPath in webpackOptions.output
-                publicPath: "../",
-                hmr: process.env.NODE_ENV === "development"
-                }
-            },
-            "css-loader",
-            "postcss-loader"
-            ]
-        },
-        {
-            test: /\.(png|jpe?g|gif)$/i,
-            use: [
-            {
-                loader: "file-loader",
-                options: {
-                // you can specify a publicPath here
-                // by default it uses publicPath in webpackOptions.output
-                name: "[name].[ext]",
-                outputPath: "images/",
-                publicPath: "images/"
-                }
-            }
-            ]
-        },
-        {
-            test: /\.scss/,
-            use: [
-            {
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                // you can specify a publicPath here
-                // by default it uses publicPath in webpackOptions.output
-                publicPath: "../",
-                hmr: process.env.NODE_ENV === "development"
-                }
-            },
-            "css-loader",
-            "sass-loader",
-            "postcss-loader"
-            ]
-        }
-        ]
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // all options are optional
-        filename: "[name].css",
-        chunkFilename: "[id].css",
-        ignoreOrder: false // Enable to remove warnings about conflicting order
-        }),
-        require("autoprefixer")
-    ]
-    };
-
-    ```
-
-8. Create `webpack.dev.js`
-
-    ```JavaScript
-    // wepack.dev.js
-    const merge = require("webpack-merge");
-    const common = require("./webpack.common.js");
-
-    module.exports = merge(common, {
-        mode: "development",
-        devtool: "inline-source-map",
-        devServer: {
-            contentBase: "./",
-            watchContentBase: true,
-            open: "Google Chrome"
-        }
-    });
-    ```
-
-9. Create `webpack.prod.js`
-
-    ```JavaScript
-    // webpack.prod.js
-    const merge = require("webpack-merge");
-    const common = require("./webpack.common.js");
-
-    module.exports = merge(common, {
-        mode: "production",
-        devtool: "source-map"
-    });
-    ```
-
-10. create `postcss.config.js`
-
-    ```JavaScript
-    // postcss.config.js
-    module.exports = {
-        plugins: {
-            autoprefixer: {}
-        }
-    };
-    ```
-
-11. add `browserlist` key and update `scripts` in `package.json`
-
-    ```JavaScript
-    // package.json
-    "browserslist": [
-        "last 1 version",
-        "> 1%",
-        "maintained node versions",
-        "not dead"
-    ],
-    "scripts": {
-        "start": "webpack-dev-server --config webpack.dev.js",
-        "webpack:watch": "webpack --watch --config webpack.dev.js",
-        "webpack:build": "webpack --config webpack.prod.js  --optimize-minimize"
-    },
-    ```
-
-12. create `index.scss` in `/src/styles`
-
-13. create `index.js` in `/src` directory and import style `/src/styles/index.scss`
-
-14. create `index.html` and import `dist/main.css` and `dist/main.js` appropriately
+Bonus Features:
+* Sidebar information for definition, examples, etc.

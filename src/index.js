@@ -1,8 +1,11 @@
-import "./styles/index.scss";
+import "./styles/index.css";
 import "./images/yoda-stitch.jpg";
 import canvasExample from "./scripts/canvas";
 import Square from "./scripts/square";
 import { DOMExample } from "./scripts/DOMExample";
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+
 const currentStateObj = {
   currentExample: null,
   currentEventListeners: [],
@@ -102,3 +105,4 @@ function clearDemo() {
     );
   }
 }
+

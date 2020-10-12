@@ -9,8 +9,95 @@
   </head>
 
   <body>
+    <input type="text" id="searchBar" onkeyup="searchFunction()" placeholder="Lookup words..">
+    
+    <ul id="wordList">
+      <li><a href="#">bourgeoise</a></li>
+      <li><a href="#">tornado</a></li>
+    
+      <li><a href="#">kangaroo</a></li>
+      <li><a href="#">burrito</a></li>
+    
+      <li><a href="#">kielbasa</a></li>
+      <li><a href="#">nirvana</a></li>
+      <li><a href="#">delicatessen</a></li>
+    </ul>   
+    <script>
+      function searchFunction() {
+          // Declare variables
+          // var i;
+          var input = document.getElementById('searchBar');
+          var entry = input.value.toUpperCase();
+          var wordList = document.getElementById("wordList");
+          var targetWord = wordList.getElementsByTagName('li');
+
+          // Loop through all list items, and hide those who don't match the search query
+          for (i = 0; i < targetWord.length; i++) {
+            var a = targetWord[i].getElementsByTagName("a")[0];
+            var txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(entry) > -1) {
+              targetWord[i].style.display = "";
+            } else {
+              targetWord[i].style.display = "none";
+            }
+          }
+        }
+    </script>
+
+    <script src="./src/scripts/map.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
+
+    <div id="mapdiv" style="width: 900px; height: 800px;">MAP GOES HERE</div>
+    <script>
+      // Create chart instance
+      var chart = am4core.create("mapdiv", am4charts.PieChart);
+
+      // Create pie series
+      var series = chart.series.push(new am4charts.PieSeries());
+      series.dataFields.value = "litres";
+      series.dataFields.category = "country";
+
+      // Add data
+      chart.data = [{
+        "country": "Lithuania",
+        "litres": 501.9
+      }, {
+        "country": "Czech Republic",
+        "litres": 301.9
+      }, {
+        "country": "Ireland",
+        "litres": 201.1
+      }, {
+        "country": "Germany",
+        "litres": 165.8
+      }, {
+        "country": "Australia",
+        "litres": 139.9
+      }, {
+        "country": "Austria",
+        "litres": 128.3
+      }, {
+        "country": "UK",
+        "litres": 99
+      }, {
+        "country": "Belgium",
+        "litres": 60
+      }, {
+        "country": "The Netherlands",
+        "litres": 50
+      }];
+
+      // And, for a good measure, let's add a legend
+      chart.legend = new am4charts.Legend();
+    </script>
+
+
     <button id="canvas-demo">Canvas Demo</button>
     <button id="DOM-demo">DOM Demo</button>
     <script src="./dist/main.js"></script>
+
+
   </body>
 </html>

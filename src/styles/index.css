@@ -1,4 +1,4 @@
-// MIXINS && VARIABLES
+/* // MIXINS && VARIABLES
 
 @mixin basic-box-shadow($color) {
   box-shadow: 3px 3px 5px 5px $color, 1px 0px 1px $color;
@@ -6,13 +6,12 @@
 
 $main-color: blue;
 $accent-color: darken($main-color, 20%);
-$background-color: lighten($main-color, 40%);
+$background-color: lighten($main-color, 40%); */
 
-// LAYOUT
 
 body {
-  background-color: $background-color;
-  color: $main-color;
+  /* background-color: $background-color;
+  color: $main-color; */
   display: flex;
   flex-direction: column;
 }
@@ -23,14 +22,13 @@ body {
   justify-content: center;
 }
 
-// COMPONENTS
 .card {
   background: white;
   height: 50vh;
   width: 50vw;
   border-radius: 15px;
   margin-top: 15px;
-  @include basic-box-shadow($accent-color);
+  /* @include basic-box-shadow($accent-color); */
 }
 
 .image-card {
@@ -38,7 +36,6 @@ body {
   background-position: center;
 }
 
-// TYPOGRAPHY
 h2 {
   font-size: 3rem;
 }

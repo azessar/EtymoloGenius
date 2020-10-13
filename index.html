@@ -9,94 +9,106 @@
   </head>
 
   <body>
-    <input type="text" id="searchBar" onkeyup="searchFunction()" placeholder="Lookup words..">
+    <form>
+      <input type="text" id="searchBar" placeholder="Lookup words..">
+      <button id="submit" type="button" onclick="searchOutput()">submit</button>
+    </form>
     
-    <ul id="wordList">
-      <li><a href="#">bourgeoise</a></li>
-      <li><a href="#">tornado</a></li>
-    
-      <li><a href="#">kangaroo</a></li>
-      <li><a href="#">burrito</a></li>
-    
-      <li><a href="#">kielbasa</a></li>
-      <li><a href="#">nirvana</a></li>
-      <li><a href="#">delicatessen</a></li>
-    </ul>   
+    <div id="output"></div>
+
     <script>
-      function searchFunction() {
-          // Declare variables
-          // var i;
-          var input = document.getElementById('searchBar');
-          var entry = input.value.toUpperCase();
-          var wordList = document.getElementById("wordList");
-          var targetWord = wordList.getElementsByTagName('li');
+      
 
-          // Loop through all list items, and hide those who don't match the search query
-          for (i = 0; i < targetWord.length; i++) {
-            var a = targetWord[i].getElementsByTagName("a")[0];
-            var txtValue = a.textContent || a.innerText;
-            if (txtValue.toUpperCase().indexOf(entry) > -1) {
-              targetWord[i].style.display = "";
-            } else {
-              targetWord[i].style.display = "none";
-            }
-          }
-        }
-    </script>
+      function searchOutput() {
+        var userInput = document.getElementById('searchBar').value;
+        document.getElementById('output').innerHTML = userInput;
 
-    <script src="./src/scripts/map.js"></script>
+        // fetching from dictionary API
+        const app_id = "aefa1dac"; // insert your APP Id
+        const app_key = "9a90a75ef3f1beb69593d646155a9ca6"; // insert your APP Key
+        const wordId = "ace";
+        const fields = "pronunciations";
+        const strictMatch = "false";
+
+        const endpoint = "entries"
+        const languageCode = "en-us"
+
+        // const options = {
+        //   host: 'od-api.oxforddictionaries.com',
+        //   port: '443',
+        //   path: '/api/v2/entries/en-gb/' + wordId + '?fields=' + fields + '&strictMatch=' + strictMatch,
+        //   method: "GET",
+        //   // headers: {
+        //   //   'app_id': app_id,
+        //   //   'app_key': app_key
+        //   // }
+        // };
+
+
+        const bigURL = "https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/" + endpoint + "/" + languageCode + "/" + wordId.toLowerCase()
+
+        fetch(bigURL, {headers: { "app_id": app_id, "app_key": app_key } })
+          .then(response => response.json())
+          .then(data => console.log(data));
+
+        // http.get(options, (resp) => {
+        //   let body = '';
+        //   resp.on('data', (d) => {
+        //     body += d;
+        //   });
+        //   resp.on('end', () => {
+        //     let parsed = JSON.stringify(body);
+
+        //     console.log(parsed);
+        //   });
+        // });
+
+
+        // finish fetching from dictionary API
+      }
+    </script> 
+   
+
     <script src="//cdn.amcharts.com/lib/4/core.js"></script>
-    <script src="//cdn.amcharts.com/lib/4/charts.js"></script>
     <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+    <div id="globediv" style="width: 900px; height: 800px;">MAP GOES HERE</div>
 
-    <div id="mapdiv" style="width: 900px; height: 800px;">MAP GOES HERE</div>
     <script>
-      // Create chart instance
-      var chart = am4core.create("mapdiv", am4charts.PieChart);
 
-      // Create pie series
-      var series = chart.series.push(new am4charts.PieSeries());
-      series.dataFields.value = "litres";
-      series.dataFields.category = "country";
+      // Create map instance
+      var chart = am4core.create("globediv", am4maps.MapChart);
+      chart.geodata = am4geodata_worldLow;
+      chart.projection = new am4maps.projections.Orthographic();
+      chart.deltaLatitude = -30;
+      chart.panBehavior = "rotateLongLat";
+      chart.marginTop = 20;
+      chart.marginBottom = 20;
 
-      // Add data
-      chart.data = [{
-        "country": "Lithuania",
-        "litres": 501.9
-      }, {
-        "country": "Czech Republic",
-        "litres": 301.9
-      }, {
-        "country": "Ireland",
-        "litres": 201.1
-      }, {
-        "country": "Germany",
-        "litres": 165.8
-      }, {
-        "country": "Australia",
-        "litres": 139.9
-      }, {
-        "country": "Austria",
-        "litres": 128.3
-      }, {
-        "country": "UK",
-        "litres": 99
-      }, {
-        "country": "Belgium",
-        "litres": 60
-      }, {
-        "country": "The Netherlands",
-        "litres": 50
-      }];
+      // Create map polygon series
+      var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+      polygonSeries.useGeodata = true;
+      polygonSeries.north = 90;
+      polygonSeries.south = -90;
 
-      // And, for a good measure, let's add a legend
-      chart.legend = new am4charts.Legend();
+      // Configure series
+      var polygonTemplate = polygonSeries.mapPolygons.template;
+      polygonTemplate.tooltipText = "{name}";
+      polygonTemplate.fill = am4core.color("#d7e7ce");
+      polygonTemplate.stroke = am4core.color("#aaa");
+      polygonTemplate.strokeWidth = 1;
+
+      // Create hover state and set alternative fill color
+      var hs = polygonTemplate.states.create("hover");
+      hs.properties.fill = am4core.color("#367B25");
+
+      var grid = chart.series.push(new am4maps.GraticuleSeries());
+      grid.toBack();
+
+      chart.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color("#aadaff");
+      chart.backgroundSeries.mapPolygons.template.polygon.fillOpacity = 1;
+      chart.backgroundSeries.toBack();
     </script>
-
-
-    <button id="canvas-demo">Canvas Demo</button>
-    <button id="DOM-demo">DOM Demo</button>
-    <script src="./dist/main.js"></script>
 
 
   </body>

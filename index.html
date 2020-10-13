@@ -1,115 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./dist/main.css" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <form>
-      <input type="text" id="searchBar" placeholder="Lookup words..">
-      <button id="submit" type="button" onclick="searchOutput()">submit</button>
-    </form>
-    
-    <div id="output"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="./dist/main.css" />
+  <title>Document</title>
+</head>
 
-    <script>
-      
+<body>
+  <form>
+    <input type="text" id="searchBar" placeholder="Lookup words..">
+    <button id="submit" type="button" onclick="searchOutput()">submit</button>
+  </form>
 
-      function searchOutput() {
-        var userInput = document.getElementById('searchBar').value;
-        document.getElementById('output').innerHTML = userInput;
+  <div id="output"></div>
 
-        // fetching from dictionary API
-        const app_id = "aefa1dac"; // insert your APP Id
-        const app_key = "9a90a75ef3f1beb69593d646155a9ca6"; // insert your APP Key
-        const wordId = "ace";
-        const fields = "pronunciations";
-        const strictMatch = "false";
-
-        const endpoint = "entries"
-        const languageCode = "en-us"
-
-        // const options = {
-        //   host: 'od-api.oxforddictionaries.com',
-        //   port: '443',
-        //   path: '/api/v2/entries/en-gb/' + wordId + '?fields=' + fields + '&strictMatch=' + strictMatch,
-        //   method: "GET",
-        //   // headers: {
-        //   //   'app_id': app_id,
-        //   //   'app_key': app_key
-        //   // }
-        // };
+  <script>
 
 
-        const bigURL = "https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/" + endpoint + "/" + languageCode + "/" + wordId.toLowerCase()
+    function searchOutput() {
+      var userInput = document.getElementById('searchBar').value;
+      document.getElementById('output').innerHTML = userInput;
 
-        fetch(bigURL, {headers: { "app_id": app_id, "app_key": app_key } })
-          .then(response => response.json())
-          .then(data => console.log(data));
+      // fetching from dictionary API
+      const app_id = "aefa1dac"; // insert your APP Id
+      const app_key = "11e3bb87b4b4fa64832a3ce1570ff663"; // insert your APP Key
+      const wordId = userInput;
+      const fields = "pronunciations";
+      const strictMatch = "false";
 
-        // http.get(options, (resp) => {
-        //   let body = '';
-        //   resp.on('data', (d) => {
-        //     body += d;
-        //   });
-        //   resp.on('end', () => {
-        //     let parsed = JSON.stringify(body);
+      const endpoint = "entries"
+      const languageCode = "en-us"
 
-        //     console.log(parsed);
-        //   });
-        // });
-
-
-        // finish fetching from dictionary API
-      }
-    </script> 
-   
-
-    <script src="//cdn.amcharts.com/lib/4/core.js"></script>
-    <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
-    <script src="//cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
-    <div id="globediv" style="width: 900px; height: 800px;">MAP GOES HERE</div>
-
-    <script>
-
-      // Create map instance
-      var chart = am4core.create("globediv", am4maps.MapChart);
-      chart.geodata = am4geodata_worldLow;
-      chart.projection = new am4maps.projections.Orthographic();
-      chart.deltaLatitude = -30;
-      chart.panBehavior = "rotateLongLat";
-      chart.marginTop = 20;
-      chart.marginBottom = 20;
-
-      // Create map polygon series
-      var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
-      polygonSeries.useGeodata = true;
-      polygonSeries.north = 90;
-      polygonSeries.south = -90;
-
-      // Configure series
-      var polygonTemplate = polygonSeries.mapPolygons.template;
-      polygonTemplate.tooltipText = "{name}";
-      polygonTemplate.fill = am4core.color("#d7e7ce");
-      polygonTemplate.stroke = am4core.color("#aaa");
-      polygonTemplate.strokeWidth = 1;
-
-      // Create hover state and set alternative fill color
-      var hs = polygonTemplate.states.create("hover");
-      hs.properties.fill = am4core.color("#367B25");
-
-      var grid = chart.series.push(new am4maps.GraticuleSeries());
-      grid.toBack();
-
-      chart.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color("#aadaff");
-      chart.backgroundSeries.mapPolygons.template.polygon.fillOpacity = 1;
-      chart.backgroundSeries.toBack();
-    </script>
+      // const options = {
+      //   host: 'od-api.oxforddictionaries.com',
+      //   port: '443',
+      //   path: '/api/v2/entries/en-gb/' + wordId + '?fields=' + fields + '&strictMatch=' + strictMatch,
+      //   method: "GET",
+      //   // headers: {
+      //   //   'app_id': app_id,
+      //   //   'app_key': app_key
+      //   // }
+      // };
 
 
-  </body>
+      const bigURL = "https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/" + endpoint + "/" + languageCode + "/" + wordId.toLowerCase()
+
+      fetch(bigURL, { headers: { "app_id": app_id, "app_key": app_key } })
+        .then(response => response.json())
+        .then(data => console.log(data.results[0].lexicalEntries[0].entries[0].etymologies[0]));
+
+      // http.get(options, (resp) => {
+      //   let body = '';
+      //   resp.on('data', (d) => {
+      //     body += d;
+      //   });
+      //   resp.on('end', () => {
+      //     let parsed = JSON.stringify(body);
+
+      //     console.log(parsed);
+      //   });
+      // });
+
+
+      // finish fetching from dictionary API
+    }
+  </script>
+
+
+  <script src="//cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
+  <script src="//cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+  <div id="globediv" style="width: 900px; height: 800px;">MAP GOES HERE</div>
+
+  <script>
+
+    // Create map instance
+    var chart = am4core.create("globediv", am4maps.MapChart);
+    chart.geodata = am4geodata_worldLow;
+    chart.projection = new am4maps.projections.Orthographic();
+    chart.deltaLatitude = -30;
+    chart.panBehavior = "rotateLongLat";
+    chart.marginTop = 20;
+    chart.marginBottom = 20;
+
+    // Create map polygon series
+    var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+    polygonSeries.useGeodata = true;
+    polygonSeries.north = 90;
+    polygonSeries.south = -90;
+
+    // Configure series
+    var polygonTemplate = polygonSeries.mapPolygons.template;
+    polygonTemplate.tooltipText = "{name}";
+    polygonTemplate.fill = am4core.color("#d7e7ce");
+    polygonTemplate.stroke = am4core.color("#aaa");
+    polygonTemplate.strokeWidth = 1;
+
+    // Create hover state and set alternative fill color
+    var hs = polygonTemplate.states.create("hover");
+    hs.properties.fill = am4core.color("#367B25");
+
+    var grid = chart.series.push(new am4maps.GraticuleSeries());
+    grid.toBack();
+
+    chart.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color("#aadaff");
+    chart.backgroundSeries.mapPolygons.template.polygon.fillOpacity = 1;
+    chart.backgroundSeries.toBack();
+  </script>
+
+
+</body>
+
 </html>

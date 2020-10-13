@@ -1,12 +1,97 @@
-const languages = ["English", "Spanish", "Greek", "Italian", "French", "Latin", "German", "Chinese", "Korean", "Russian", "Japanese", "Arabic", "Hebrew"]
+const languageToCountry = {
+    "English": "United Kingdom",
+    "Hindi": "India",
+    "Spanish": "Spain",
+    "French": "France",
+    "Bengali": "India",
+    "Portuguese": "Portugal",
+    "Urdu": "Pakistan",
+    "German": "Germany",
+    "Marathi": "India",
+    "Punjabi": "India",
+    "Italian": "Italy",
+    "Gujarati": "India",
+    "Persian": "Iran",
+    "Bhojpuri": "India",
+    "Polish": "Poland",
+    "Odia": "India",
+    "Maithili": "India",
+    "Ukrainian": "Ukraine",
+    "Sindhi": "India",
+    "Nepali": "Nepal",
+    "Romanian": "Romania",
+    "Dutch": "Netherlands",
+    "Pashto": "Afghanistan",
+    "Magahi": "India",
+    "Hindi": "Pakistan",
+    "Afrikaans": "South Africa",
+    "Sinhala": "Sri Lanka",
+    "Chhattisgarhi": "India",
+    "Assamese": "India",
+    "Kurdish": "Turkey",
+    "Chhattisgarhi": "India",
+    "Bavarian": "Germany",
+    "Czech": "Czech Republic",
+    "Greek": "Greece",
+    "Chittagonian": "Bangladesh",
+    "Swedish": "Sweden",
+    "Deccan": "India",
+    "Sadri": "India",
+    "Sylheti": "India",
+    "Chinese": "China",
+    "Burmese": "Myanmar",
+    "Arabic": "Saudi Arabia",
+    "Hausa": "Nigeria",
+    "Somali": "Somalia",
+    "Tunisian": "Tunisia",
+    "Sanaani": "Yemen",
+    "Hebrew": "Israel",
+    "Yiddish": "Germany",
+    "Indonesian": "Indonesia",
+    "Vietnamese": "Vietnam",
+    "Javanese": "Indonesia",
+    "Filipino": "Philippines",
+    "Hawaiian": "United States",
+    "Alaskan": "United States",
+    "Sundanese": "Indonesia",
+    "Tagalog": "Philippines",
+    "Cherokee": "United States",
+    "Aztec": "Mexico",
+    "Mayan": "Mexico",
+    "Japanese": "Japan",
+    "Swahili": "Tanzania",
+    "Yoruba": "Nigeria",
+    "Zulu": "South Africa",
+    "Xhosa": "South Africa",
+    "Igbo": "Nigeria",
+    "Korean": "South Korea",
+    "Fulfulde": "Niger",
+    "Telugu": "India",
+    "Tamil": "India",
+    "Turkish": "Turkey",
+    "Malayalam": "India",
+    "Thai": "Thailand",
+    "Hungarian": "Hungaria",
+    "Swedish": "Sweden",
+    "Finland": "Finnish",
+    "Norway": "Norwegian",
+    "Zapotec": "Mexico",
+    "Quechua": "Bolivia",
+    "Incan": "Peru",
+    "Inca": "India",
+}
 
 function extractLanguages(text) {
     let wordLanguages = ["English"];
+    let wordCountries = ["United Kingdom"];
     words = text.split(" ");
     words.forEach(word => 
-        (languages.includes(word) && !wordLanguages.includes(word)) ? wordLanguages.push(word) : null
+        (Object.keys(languageToCountry).includes(word) && !wordLanguages.includes(word)) ? wordLanguages.push(word) : null
     );
-    return wordLanguages.reverse();
+    words.forEach(word =>
+        (Object.keys(languageToCountry).includes(word) && !wordCountries.includes(languageToCountry[word])) ? wordCountries.push(languageToCountry[word]) : null
+    );
+    return [ wordLanguages.reverse(), wordCountries.reverse() ];
 }
 
 function searchOutput() {

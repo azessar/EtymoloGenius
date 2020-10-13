@@ -15,58 +15,11 @@
     <button id="submit" type="button" onclick="searchOutput()">submit</button>
   </form>
 
-  <div id="output"></div>
+  <div id="output">word</div>
+  <div id="etymologies">ety.</div>
+  <div id="countries">countries</div>
 
-  <script>
-
-
-    function searchOutput() {
-      var userInput = document.getElementById('searchBar').value;
-      document.getElementById('output').innerHTML = userInput;
-
-      // fetching from dictionary API
-      const app_id = "aefa1dac"; // insert your APP Id
-      const app_key = "11e3bb87b4b4fa64832a3ce1570ff663"; // insert your APP Key
-      const wordId = userInput;
-      const fields = "pronunciations";
-      const strictMatch = "false";
-
-      const endpoint = "entries"
-      const languageCode = "en-us"
-
-      // const options = {
-      //   host: 'od-api.oxforddictionaries.com',
-      //   port: '443',
-      //   path: '/api/v2/entries/en-gb/' + wordId + '?fields=' + fields + '&strictMatch=' + strictMatch,
-      //   method: "GET",
-      //   // headers: {
-      //   //   'app_id': app_id,
-      //   //   'app_key': app_key
-      //   // }
-      // };
-
-
-      const bigURL = "https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/" + endpoint + "/" + languageCode + "/" + wordId.toLowerCase()
-
-      fetch(bigURL, { headers: { "app_id": app_id, "app_key": app_key } })
-        .then(response => response.json())
-        .then(data => console.log(data.results[0].lexicalEntries[0].entries[0].etymologies[0]));
-
-      // http.get(options, (resp) => {
-      //   let body = '';
-      //   resp.on('data', (d) => {
-      //     body += d;
-      //   });
-      //   resp.on('end', () => {
-      //     let parsed = JSON.stringify(body);
-
-      //     console.log(parsed);
-      //   });
-      // });
-
-
-      // finish fetching from dictionary API
-    }
+  <script src="./src/scripts/countries.js">
   </script>
 
 

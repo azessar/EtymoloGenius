@@ -71,10 +71,10 @@ const languageToCountry = {
     "Turkish": "Turkey",
     "Malayalam": "India",
     "Thai": "Thailand",
-    "Hungarian": "Hungaria",
+    "Hungarian": "Hungary",
     "Swedish": "Sweden",
-    "Finland": "Finnish",
-    "Norway": "Norwegian",
+    "Finnish": "Finland",
+    "Norwegian": "Norway",
     "Zapotec": "Mexico",
     "Quechua": "Bolivia",
     "Incan": "Peru",
@@ -84,13 +84,22 @@ const languageToCountry = {
 function extractLanguages(text) {
     let wordLanguages = ["English"];
     let wordCountries = ["United Kingdom"];
-    words = text.split(" ");
+    let chars = text.split('');
+    let cleanLetters = chars.filter(function (char) { //Thank you: https://remarkablemark.org/blog/2019/09/28/javascript-remove-punctuation/
+        let punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+        return punctuation.indexOf(char) === -1;
+    });
+    let cleanString = cleanLetters.join('');
+    words = cleanString.split(" ");
+    console.log(cleanString);
     words.forEach(word => 
         (Object.keys(languageToCountry).includes(word) && !wordLanguages.includes(word)) ? wordLanguages.push(word) : null
     );
     words.forEach(word =>
         (Object.keys(languageToCountry).includes(word) && !wordCountries.includes(languageToCountry[word])) ? wordCountries.push(languageToCountry[word]) : null
     );
+    document.getElementById('languages').innerHTML = wordLanguages.reverse();
+    document.getElementById('countries').innerHTML = wordCountries.reverse();
     return [ wordLanguages.reverse(), wordCountries.reverse() ];
 }
 
@@ -118,6 +127,7 @@ function searchOutput() {
         .then(data => {
             const etymologyText = data.results[0].lexicalEntries[0].entries[0].etymologies[0]
             document.getElementById('etymologies').innerHTML = etymologyText;
+
             console.log(document.getElementById('etymologies').innerHTML);
             console.log(extractLanguages(etymologyText));
         })

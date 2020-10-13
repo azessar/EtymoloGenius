@@ -83,6 +83,8 @@ const languageToCountry = {
     "Maori": "New Zealand",
     "American": "United States",
     "Latin": "Italy",
+    "Russian": "Russia",
+    "Danish": "Denmark",
 }
 
 function extractLanguages(text) {
@@ -120,11 +122,9 @@ function extractTime(text) {
             if (centuryArray.includes(word)) {
                 let century = `${word} century`;
                 document.getElementById('time').innerHTML = century;
-                return;
             } else if (decadeArray.includes(word)) {
                 let decade = `${word}`;
                 document.getElementById('time').innerHTML = decade;
-                return;
             }
         } 
     )

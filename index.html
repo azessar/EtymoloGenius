@@ -60,8 +60,11 @@
           countryArray.forEach(country => {
             coords.push(latAndLongs[country]);
           });
-          console.log(coords);
-          drawLines(coords);
+          if (coords.length === 0) {
+            return null
+          } else {
+            drawLines(coords);
+          }      
         }
 
         function drawLines(coordsArray) {

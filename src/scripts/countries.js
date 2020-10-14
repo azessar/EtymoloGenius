@@ -86,7 +86,12 @@ const languageToCountry = {
     "Russian": "Russia",
     "Danish": "Denmark",
     "Norse": "Sweden",
-    "Sanskrit": "India"
+    "Sanskrit": "India",
+    "Bantu": "Niger",
+    "African": "Niger",
+    "Kongo": "Congo [DRC]",
+    "Kikongo": "Congo [DRC]",
+
 }
 
 function extractLanguages(text) {
@@ -363,5 +368,6 @@ const latAndLongs = {
     'Uganda': { 'latitude': 1.373333, 'longitude': 32.290275 },
     'United States': { 'latitude': 39.8283, 'longitude': -98.5795 },
     'Hawaii': { 'latitude': 19.8968, 'longitude': -155.5828 },
+    'South Africa': { 'latitude': -30.5595, 'longitude': 22.9375 },
 
 }

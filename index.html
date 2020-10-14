@@ -35,6 +35,12 @@
   <script src="./src/scripts/maps.js"></script>
 
   <script>
+
+    function resetSearch() {
+      let searched = document.getElementById('searchBar');
+      searched.value = '';
+    }
+
     function searchOutput() {
         var userInput = document.getElementById('searchBar').value;
         document.getElementById('output').innerHTML = userInput;
@@ -84,8 +90,9 @@
             extractLanguages(etymologyText);
             extractTime(etymologyText);
             findCoordinates();
+            resetSearch();
           })
-          .catch(error => window.alert("Oops, we don't have access to that word at the moment."));
+          .catch(error => window.alert("Oops, we don't have access to that word at the moment, or you might have to reset the API key."));
         // .then(data => console.log(data.results[0].lexicalEntries[0].entries[0].etymologies[0]));
 
 

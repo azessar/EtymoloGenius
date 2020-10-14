@@ -81,7 +81,7 @@ const languageToCountry = {
     "Inca": "India",
     "Aboriginal": "Australia",
     "Maori": "New Zealand",
-    "American": "United States",
+    "Navajo": "United States",
     "Latin": "Italy",
     "Russian": "Russia",
     "Danish": "Denmark",
@@ -91,6 +91,12 @@ const languageToCountry = {
     "African": "Niger",
     "Kongo": "Congo [DRC]",
     "Kikongo": "Congo [DRC]",
+    "Sioux": "United States",
+    "Apache": "United States",
+    "Choctaw": "United States",
+    "Brazilian": "Brazil",
+    "Dharuk": "Australia",
+    "Nahuatl": "Mexico",
 
 }
 
@@ -104,12 +110,11 @@ function extractLanguages(text) {
     });
     let cleanString = cleanLetters.join('');
     let words = cleanString.split(" ");
-    words.forEach(word => 
-        (Object.keys(languageToCountry).includes(word) && !wordLanguages.includes(word)) ? wordLanguages.push(word) : null
-    );
-    words.forEach(word =>
-        (Object.keys(languageToCountry).includes(word) && !wordCountries.includes(languageToCountry[word])) ? wordCountries.push(languageToCountry[word]) : null
-    );
+    words.forEach(word => {
+        (Object.keys(languageToCountry).includes(word) && !wordLanguages.includes(word)) ? wordLanguages.push(word) : null;
+        (Object.keys(languageToCountry).includes(word) && !wordCountries.includes(languageToCountry[word])) ? wordCountries.push(languageToCountry[word]) : null;
+        (Object.values(languageToCountry).includes(word) && !wordCountries.includes(word)) ? wordCountries.push(word) : null; //in case the country is listed in the etymology instead of language (see Panda)
+    });
     document.getElementById('languages').innerHTML = wordLanguages.reverse();
     document.getElementById('countries').innerHTML = wordCountries.reverse();
     return [ wordLanguages.reverse(), wordCountries.reverse() ];

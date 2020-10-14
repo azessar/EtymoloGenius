@@ -1,41 +1,58 @@
-/* // MIXINS && VARIABLES
-
-@mixin basic-box-shadow($color) {
-  box-shadow: 3px 3px 5px 5px $color, 1px 0px 1px $color;
-}
-
-$main-color: blue;
-$accent-color: darken($main-color, 20%);
-$background-color: lighten($main-color, 40%); */
-
-
+/* html { 
+  background: url(../../dist/images/starsbackdrop.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} */
 body {
-  /* background-color: $background-color;
-  color: $main-color; */
   display: flex;
-  flex-direction: column;
+}
+/* 
+.img-box {
+  background-size: cover;
+  position: absolute; 
+  top: 0; 
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -5;
 }
 
-.center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+iframe {
+  height: 100%;
+  width: 100%;
+} */
+
+.head-banner {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  background-color: rgb(61, 61, 166); 
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  padding: 10px;
+  color: white;
+  opacity: 0.5;
 }
 
-.card {
-  background: white;
-  height: 50vh;
-  width: 50vw;
-  border-radius: 15px;
-  margin-top: 15px;
-  /* @include basic-box-shadow($accent-color); */
+.search-and-output {
+  
 }
 
-.image-card {
-  background-image: url("../images/yoda-stitch.jpg");
-  background-position: center;
+.search-form {
+  position: absolute;
+  top: 60px;
+  text-align: center;
+  width: 100%;
 }
 
-h2 {
-  font-size: 3rem;
+#main-body {
+  width: 100%;
+}
+
+#globediv {
+  margin-left: auto;
+  margin-right: auto;
 }

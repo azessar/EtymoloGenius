@@ -1,5 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
+<!-- <div class="img-box">
+  <iframe src="https://momento360.com/e/u/64cc4f5d66be4c7b90a7a8d6e585d592?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium">
+  </iframe>
+</div> -->
 
 <head>
   <meta charset="UTF-8" />
@@ -10,103 +16,110 @@
 </head>
 
 <body>
-  <form>
-    <input type="text" id="searchBar" placeholder="Lookup words..">
+  <div class="head-banner">EtymoloGenius</div>
+  <form class="search-form">
+    <input type="text" id="searchBar" placeholder="Lookup a word...">
     <button id="submit" type="button" onclick="searchOutput()">submit</button>
   </form>
-
-  <div id="output">word</div>
-  <div id="etymologies">ety.</div>
-  <div id="languages">languages</div>
-  <div id="countries">countries</div>
-  <div id="time">time</div>
-
-  <script src="./src/scripts/countries.js"></script>
-  
  
+  <div id="main-body">
+    <div class="search-and-output">
+      
+      
+      <div id="output">word</div>
+      <div id="etymologies">ety.</div>
+      <div id="languages">languages</div>
+      <div id="countries">countries</div>
+      <div id="time">time</div>
+    </div>
+    
+
+    <script src="./src/scripts/countries.js"></script>
+    
+  
 
 
 
-  <script src="//cdn.amcharts.com/lib/4/core.js"></script>
-  <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
-  <script src="//cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
-  <div id="globediv" style="width: 900px; height: 800px;"></div>
+    <script src="//cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+    <div id="globediv" style="width: 500px; height: 500px;"></div>
 
-  <script src="./src/scripts/maps.js"></script>
+    <script src="./src/scripts/maps.js"></script>
 
-  <script>
+    <script>
 
-    function resetSearch() {
-      let searched = document.getElementById('searchBar');
-      searched.value = '';
-    }
-
-    const lineSeries = chart.series.push(new am4maps.MapLineSeries());
-
-
-    function searchOutput() {
-        var userInput = document.getElementById('searchBar').value;
-        document.getElementById('output').innerHTML = userInput;
-
-        // fetching from dictionary API
-        const app_id = "aefa1dac"; // insert your APP Id
-        const app_key = "11e3bb87b4b4fa64832a3ce1570ff663"; // insert your APP Key
-        const wordId = userInput;
-        const fields = "pronunciations";
-        const strictMatch = "false";
-
-        const endpoint = "entries";
-        const languageCode = "en-us";
-
-        const countries = ["United Kingdom"];
-
-
-        const bigURL = "https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/" + endpoint + "/" + languageCode + "/" + wordId.toLowerCase()
-
-        function findCoordinates() {
-          let countryArray = document.getElementById('countries').innerHTML.split(",");
-          let coords = [];
-          countryArray.forEach(country => {
-            coords.push(latAndLongs[country]);
-          });
-          if (coords.length === 0) {
-            return null
-          } else {
-            drawLines(coords);
-          }      
-        }
-
-
-        function drawLines(coordsArray) {
-          lineSeries.data = [{
-            "multiGeoLine": [
-              coordsArray
-            ]
-          }];
-        }
-
-        fetch(bigURL, { headers: { "app_id": app_id, "app_key": app_key } })
-          .then(response => response.json())
-          .then(data => {
-            const etymologyText = data.results[0].lexicalEntries[0].entries[0].etymologies[0]
-            document.getElementById('etymologies').innerHTML = etymologyText;
-            extractLanguages(etymologyText);
-            extractTime(etymologyText);
-            findCoordinates();
-            resetSearch();
-          })
-          .catch(error => window.alert("Oops, we don't have access to that word at the moment, or you might have to reset the API key."));
-        // .then(data => console.log(data.results[0].lexicalEntries[0].entries[0].etymologies[0]));
-
-
-
-
-        // finish fetching from dictionary API
+      function resetSearch() {
+        let searched = document.getElementById('searchBar');
+        searched.value = '';
       }
 
+      const lineSeries = chart.series.push(new am4maps.MapLineSeries());
 
-  </script>
 
+      function searchOutput() {
+          var userInput = document.getElementById('searchBar').value;
+          document.getElementById('output').innerHTML = userInput;
+
+          // fetching from dictionary API
+          const app_id = "aefa1dac"; // insert your APP Id
+          const app_key = "11e3bb87b4b4fa64832a3ce1570ff663"; // insert your APP Key
+          const wordId = userInput;
+          const fields = "pronunciations";
+          const strictMatch = "false";
+
+          const endpoint = "entries";
+          const languageCode = "en-us";
+
+          const countries = ["United Kingdom"];
+
+
+          const bigURL = "https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/" + endpoint + "/" + languageCode + "/" + wordId.toLowerCase()
+
+          function findCoordinates() {
+            let countryArray = document.getElementById('countries').innerHTML.split(",");
+            let coords = [];
+            countryArray.forEach(country => {
+              coords.push(latAndLongs[country]);
+            });
+            if (coords.length === 0) {
+              return null
+            } else {
+              drawLines(coords);
+            }      
+          }
+
+
+          function drawLines(coordsArray) {
+            lineSeries.data = [{
+              "multiGeoLine": [
+                coordsArray
+              ]
+            }];
+          }
+
+          fetch(bigURL, { headers: { "app_id": app_id, "app_key": app_key } })
+            .then(response => response.json())
+            .then(data => {
+              const etymologyText = data.results[0].lexicalEntries[0].entries[0].etymologies[0]
+              document.getElementById('etymologies').innerHTML = etymologyText;
+              extractLanguages(etymologyText);
+              extractTime(etymologyText);
+              findCoordinates();
+              resetSearch();
+            })
+            .catch(error => window.alert("Oops, we don't have access to that word at the moment, or you might have to reset the API key."));
+          // .then(data => console.log(data.results[0].lexicalEntries[0].entries[0].etymologies[0]));
+
+
+
+
+          // finish fetching from dictionary API
+        }
+
+
+    </script>
+  </div>
 </body>
 
 </html>

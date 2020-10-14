@@ -5,6 +5,7 @@ chart.deltaLatitude = -30;
 chart.panBehavior = "rotateLongLat";
 chart.marginTop = 20;
 chart.marginBottom = 20;
+chart.maxZoomLevel = 1;
 
 // Create map polygon series
 var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
@@ -18,6 +19,8 @@ polygonTemplate.tooltipText = "{name}";
 polygonTemplate.fill = am4core.color("#d7e7ce");
 polygonTemplate.stroke = am4core.color("#aaa");
 polygonTemplate.strokeWidth = 1;
+polygonTemplate.nonScaling = true;
+polygonTemplate.nonScalingStroke = true;
 
 // Create hover state and set alternative fill color
 var hs = polygonTemplate.states.create("hover");
@@ -27,8 +30,8 @@ var grid = chart.series.push(new am4maps.GraticuleSeries());
 grid.toBack();
 
 chart.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color("#aadaff");
-chart.backgroundSeries.mapPolygons.template.polygon.fillOpacity = 1;
+chart.backgroundSeries.mapPolygons.template.polygon.fillOpacity = 0.5;
 chart.backgroundSeries.toBack();
-
-
+chart.backgroundSeries.mapPolygons.template.nonScaling = true;
+chart.backgroundSeries.mapPolygons.template.nonScalingStroke = true;
 

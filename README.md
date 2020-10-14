@@ -29,3 +29,8 @@ The scripts necessary for this project include:
 
 Bonus Features:
 * Sidebar information for definition, examples, etc.
+
+
+Cool words to try: coyote, luau, avocado, hammock
+
+things to include still: animation, loading modal, left and right margin definitions

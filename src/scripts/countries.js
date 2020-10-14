@@ -60,6 +60,7 @@ const languageToCountry = {
     "Mayan": "Mexico",
     "Japanese": "Japan",
     "Swahili": "Tanzania",
+    "Kiswahili": "Tanzania",
     "Yoruba": "Nigeria",
     "Zulu": "South Africa",
     "Xhosa": "South Africa",
@@ -97,6 +98,12 @@ const languageToCountry = {
     "Brazilian": "Brazil",
     "Dharuk": "Australia",
     "Nahuatl": "Mexico",
+    "Algonquian": "United States",
+    "Taino": "Dominican Republic",
+    "Arawak": "Venezuela",
+
+
+
 
 }
 
@@ -374,5 +381,7 @@ const latAndLongs = {
     'United States': { 'latitude': 39.8283, 'longitude': -98.5795 },
     'Hawaii': { 'latitude': 19.8968, 'longitude': -155.5828 },
     'South Africa': { 'latitude': -30.5595, 'longitude': 22.9375 },
+    'Venezuela': { 'latitude': 6.4238, 'longitude': -66.5897 },
+
 
 }

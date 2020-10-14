@@ -78,13 +78,11 @@
 
 
         function drawLines(coordsArray) {
-          debugger
           lineSeries.data = [{
             "multiGeoLine": [
               coordsArray
             ]
           }];
-          debugger
         }
 
         fetch(bigURL, { headers: { "app_id": app_id, "app_key": app_key } })

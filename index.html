@@ -41,6 +41,9 @@
       searched.value = '';
     }
 
+    const lineSeries = chart.series.push(new am4maps.MapLineSeries());
+
+
     function searchOutput() {
         var userInput = document.getElementById('searchBar').value;
         document.getElementById('output').innerHTML = userInput;
@@ -73,13 +76,15 @@
           }      
         }
 
+
         function drawLines(coordsArray) {
-          var lineSeries = chart.series.push(new am4maps.MapLineSeries());
+          debugger
           lineSeries.data = [{
             "multiGeoLine": [
               coordsArray
             ]
           }];
+          debugger
         }
 
         fetch(bigURL, { headers: { "app_id": app_id, "app_key": app_key } })

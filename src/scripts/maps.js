@@ -30,13 +30,5 @@ chart.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color("#aadaf
 chart.backgroundSeries.mapPolygons.template.polygon.fillOpacity = 1;
 chart.backgroundSeries.toBack();
 
-var lineSeries = chart.series.push(new am4maps.MapLineSeries());
-lineSeries.data = [{
-    "multiGeoLine": [
-        [
-            { "latitude": 48.856614, "longitude": 2.352222 },
-            { "latitude": 40.712775, "longitude": -74.005973 },
-            { "latitude": 49.282729, "longitude": -123.120738 }
-        ]
-    ]
-}];
+
+

@@ -21,17 +21,78 @@
   <div id="countries">countries</div>
   <div id="time">time</div>
 
-  <script src="./src/scripts/countries.js">
-  </script>
+  <script src="./src/scripts/countries.js"></script>
+  
+ 
+
 
 
   <script src="//cdn.amcharts.com/lib/4/core.js"></script>
   <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
   <script src="//cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
-  <div id="globediv" style="width: 900px; height: 800px;">MAP GOES HERE</div>
+  <div id="globediv" style="width: 900px; height: 800px;"></div>
 
   <script src="./src/scripts/maps.js"></script>
 
+  <script>
+    function searchOutput() {
+        var userInput = document.getElementById('searchBar').value;
+        document.getElementById('output').innerHTML = userInput;
+
+        // fetching from dictionary API
+        const app_id = "aefa1dac"; // insert your APP Id
+        const app_key = "11e3bb87b4b4fa64832a3ce1570ff663"; // insert your APP Key
+        const wordId = userInput;
+        const fields = "pronunciations";
+        const strictMatch = "false";
+
+        const endpoint = "entries";
+        const languageCode = "en-us";
+
+        const countries = ["United Kingdom"];
+
+
+        const bigURL = "https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/" + endpoint + "/" + languageCode + "/" + wordId.toLowerCase()
+
+        function findCoordinates() {
+          let countryArray = document.getElementById('countries').innerHTML.split(",");
+          let coords = [];
+          countryArray.forEach(country => {
+            coords.push(latAndLongs[country]);
+          });
+          console.log(coords);
+          drawLines(coords);
+        }
+
+        function drawLines(coordsArray) {
+          var lineSeries = chart.series.push(new am4maps.MapLineSeries());
+          lineSeries.data = [{
+            "multiGeoLine": [
+              coordsArray
+            ]
+          }];
+        }
+
+        fetch(bigURL, { headers: { "app_id": app_id, "app_key": app_key } })
+          .then(response => response.json())
+          .then(data => {
+            const etymologyText = data.results[0].lexicalEntries[0].entries[0].etymologies[0]
+            document.getElementById('etymologies').innerHTML = etymologyText;
+            extractLanguages(etymologyText);
+            extractTime(etymologyText);
+            findCoordinates();
+          })
+          .catch(error => window.alert("Oops, we don't have access to that word at the moment."));
+        // .then(data => console.log(data.results[0].lexicalEntries[0].entries[0].etymologies[0]));
+
+
+
+
+        // finish fetching from dictionary API
+      }
+
+
+  </script>
 
 </body>
 

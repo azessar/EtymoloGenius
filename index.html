@@ -25,7 +25,7 @@
   <div id="part-of-speech"></div>
   <div id="output"></div>
   <div id="pronunciation"></div>
-  <div id="part-of-speech-and-def"></div>
+  <div id="definition"></div>
 
 
   <div class="search-and-output">
@@ -131,7 +131,7 @@
               document.getElementById('etymologies').innerHTML = etymologyText;
               document.getElementById('part-of-speech').innerHTML = partOfSpeech;
               document.getElementById('pronunciation').innerHTML = pronunciation;
-              document.getElementById('part-of-speech-and-def').innerHTML = "(" + partOfSpeech + ")" + " " + definition;
+              document.getElementById('definition').innerHTML = definition;
               extractLanguages(etymologyText);
               extractTime(etymologyText);
               findCoordinates();

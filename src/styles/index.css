@@ -40,7 +40,7 @@ iframe {
 #globediv {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 70px;
+  margin-top: 90px;
 }
 
 .search-and-output {
@@ -63,14 +63,39 @@ iframe {
     margin-top: 10px;
     font-size: 30px;
 }
-#part-of-speech-and-def {
+#definition {
   position: absolute;
     margin-left: 49.3%;
     margin-right: -50%;
-    top: 135px;
+    top: 143px;
     transform: translate(-50%, -50%);
     font-size: 15px;
+    width: 55%;
+    text-align: center;
 }
+#part-of-speech {
+  position: absolute;
+    margin-left: 69.3%;
+    margin-right: -70%;
+    top: 108px;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    width: 30%;
+    text-align: center;
+    font-style: italic;
+}
+#pronunciation {
+  position: absolute;
+    margin-left: 29.3%;
+    margin-right: -70%;
+    top: 108px;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    width: 30%;
+    text-align: center;
+}
+
+
 #searchBar {
   width: 210px;
 }

@@ -447,7 +447,7 @@ const languageToCountry = {
     'Ecuadorian': 'Ecuador',
     'Egyptian': 'Egypt',
     'Salvadoran': 'El Salvador',
-    'English': 'England',
+    'English': 'United Kingdom',
     'Equatorial Guinean, Equatoguinean': 'Equatorial Guinea',
     'Eritrean': 'Eritrea',
     'Estonian': 'Estonia',

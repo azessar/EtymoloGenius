@@ -31,6 +31,6 @@ Bonus Features:
 * Sidebar information for definition, examples, etc.
 
 
-Cool words to try: coyote, luau, avocado, hammock
+Cool words to try: coyote, luau, avocado, hammock, mambo
 
 things to include still: animation, loading modal, left and right margin definitions

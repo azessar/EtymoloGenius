@@ -32,7 +32,8 @@ iframe {
   width: 100%;
   text-align: center;
   font-size: 30px;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   color: white;
   opacity: 0.5;
 }
@@ -42,17 +43,32 @@ iframe {
 }
 
 .search-form {
+    position: relative;
+    top: 65px;
+    left: 25%;
+    text-align: center;
+    height: 20px;
+}
+#output {
   position: absolute;
-  top: 60px;
-  text-align: center;
-  width: 100%;
+    top: 86px;
+    text-align: center;
+    font-size: 25px;
+}
+#part-of-speech-and-def {
+  position: absolute;
+    top: 116px;
+    left: 225px;
+    text-align: center;
+    width: 50%;
+    font-size: 12px;
 }
 
 #main-body {
-  width: 100%;
 }
 
 #globediv {
-  margin-left: auto;
-  margin-right: auto;
+    position: relative;
+    top: 70px;
+    right: 45%;
 }

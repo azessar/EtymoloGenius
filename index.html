@@ -21,12 +21,14 @@
     <input type="text" id="searchBar" placeholder="Lookup a word...">
     <button id="submit" type="button" onclick="searchOutput()">submit</button>
   </form>
+  <div id="output"></div>
+  <div id="part-of-speech-and-def"></div>
  
   <div id="main-body">
     <div class="search-and-output">
       
       
-      <div id="output">word</div>
+      
       <div id="etymologies">ety.</div>
       <div id="languages">languages</div>
       <div id="countries">countries</div>
@@ -65,7 +67,7 @@
           const app_id = "aefa1dac"; // insert your APP Id
           const app_key = "11e3bb87b4b4fa64832a3ce1570ff663"; // insert your APP Key
           const wordId = userInput;
-          const fields = "pronunciations";
+          // const fields = "etymologies";
           const strictMatch = "false";
 
           const endpoint = "entries";
@@ -86,6 +88,7 @@
               return null
             } else {
               drawLines(coords);
+              panToOriginCountry(coords[0]);
             }      
           }
 
@@ -98,11 +101,19 @@
             }];
           }
 
+          function panToOriginCountry(coordsPair) {
+            chart.zoomGeoPoint = coordsPair;
+          }
+
           fetch(bigURL, { headers: { "app_id": app_id, "app_key": app_key } })
             .then(response => response.json())
             .then(data => {
-              const etymologyText = data.results[0].lexicalEntries[0].entries[0].etymologies[0]
+              const etymologyText = data.results[0].lexicalEntries[0].entries[0].etymologies[0];
+              const partOfSpeech = data.results[0].lexicalEntries[0].lexicalCategory["id"];
+              const definition = data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
               document.getElementById('etymologies').innerHTML = etymologyText;
+              document.getElementById('part-of-speech-and-def').innerHTML = "(" + partOfSpeech + ")" + " " + definition;
+              console.log(data)
               extractLanguages(etymologyText);
               extractTime(etymologyText);
               findCoordinates();

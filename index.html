@@ -88,6 +88,7 @@
               return null
             } else {
               drawLines(coords);
+              console.log(coords[0]);
               panToOriginCountry(coords[0]);
             }      
           }
@@ -102,7 +103,13 @@
           }
 
           function panToOriginCountry(coordsPair) {
-            chart.zoomGeoPoint = coordsPair;
+            chart.animate([{
+              property: "deltaLongitude",
+              to: -coordsPair["longitude"]
+            }, {
+              property: "deltaLatitude",
+              to: -coordsPair["latitude"]
+            }], 1000)
           }
 
           fetch(bigURL, { headers: { "app_id": app_id, "app_key": app_key } })

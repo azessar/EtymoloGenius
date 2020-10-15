@@ -13,9 +13,18 @@ function extractLanguages(text) {
         (Object.keys(languageToCountry).includes(word) && !wordCountries.includes(languageToCountry[word])) ? wordCountries.push(languageToCountry[word]) : null;
         (Object.values(languageToCountry).includes(word) && !wordCountries.includes(word)) ? wordCountries.push(word) : null; //in case the country is listed in the etymology instead of language (see Panda)
     });
-    document.getElementById('languages').innerHTML = wordLanguages.reverse();
+    let languageText = "went from " 
+    document.getElementById('languages').innerHTML = makeLanguageText(wordLanguages.reverse());
     document.getElementById('countries').innerHTML = wordCountries.reverse();
     return [ wordLanguages.reverse(), wordCountries.reverse() ];
+}
+
+function makeLanguageText(languages) {
+    finalText = ""
+    languages.forEach(language => {
+        finalText += ("to " + language)
+    })
+    return finalText;
 }
 
 function extractTime(text) {

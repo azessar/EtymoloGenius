@@ -1,4 +1,4 @@
-function extractLanguages(text) {
+function extractCountries(text) {
     let wordLanguages = ["English"];
     let wordCountries = ["United Kingdom"];
     let chars = text.split('');
@@ -13,18 +13,28 @@ function extractLanguages(text) {
         (Object.keys(languageToCountry).includes(word) && !wordCountries.includes(languageToCountry[word])) ? wordCountries.push(languageToCountry[word]) : null;
         (Object.values(languageToCountry).includes(word) && !wordCountries.includes(word)) ? wordCountries.push(word) : null; //in case the country is listed in the etymology instead of language (see Panda)
     });
-    let languageText = "went from " 
-    document.getElementById('languages').innerHTML = makeLanguageText(wordLanguages.reverse());
+    const countryText = " came from what is present day " + makeCountryText(wordCountries.reverse());
     document.getElementById('countries').innerHTML = wordCountries.reverse();
-    return [ wordLanguages.reverse(), wordCountries.reverse() ];
+    return countryText;
+    // return [ wordLanguages.reverse(), wordCountries.reverse() ];
 }
 
-function makeLanguageText(languages) {
-    finalText = ""
-    languages.forEach(language => {
-        finalText += ("to " + language)
+function makeCountryText(countries) {
+    finalText = "";
+    countries.forEach(country => {
+        if (countries.indexOf(country) === 0) {
+            finalText += country
+        } else if (countries.indexOf(country) === countries.length - 1) {
+            finalText += " before coming to English ";
+        } else {
+            finalText += (" and " + country)
+        }
     })
     return finalText;
+}
+
+function checkIfActualLanguage(string) {
+
 }
 
 function extractTime(text) {
@@ -231,7 +241,7 @@ const latAndLongs = {
     'Saint Pierre and Miquelon': { 'latitude': 46.941936, 'longitude': -56.27111 },
     'Pitcairn Islands': { 'latitude': -24.703615, 'longitude': -127.439308 },
     'Puerto Rico': { 'latitude': 18.220833, 'longitude': -66.590149 },
-    'Palestinian Territories': { 'latitude': 31.952162, 'longitude': 35.233154 },
+    'Palestine': { 'latitude': 31.952162, 'longitude': 35.233154 },
     'Portugal': { 'latitude': 39.399872, 'longitude': -8.224454 },
     'Palau': { 'latitude': 7.51498, 'longitude': 134.58252 },
     'Paraguay': { 'latitude': -23.442503, 'longitude': -58.443832 },
@@ -334,6 +344,7 @@ const languageToCountry = {
     "Tunisian": "Tunisia",
     "Sanaani": "Yemen",
     "Hebrew": "Israel",
+    "Aramaic": "Israel",
     "Yiddish": "Germany",
     "Indonesian": "Indonesia",
     "Vietnamese": "Vietnam",
@@ -625,7 +636,7 @@ const languageToCountry = {
     'Ukrainian': 'Ukraine',
     'Emirati, Emirian, Emiri': 'United Arab Emirates',
     'British, United Kingdom, UK': 'United Kingdom of Great Britain and Northern Ireland',
-    'American,[p] United States, U.S.': 'United States of America',
+    'American': 'United States',
     'Uruguayan': 'Uruguay',
     'Uzbekistani, Uzbek': 'Uzbekistan',
     'Ni-Vanuatu, Vanuatuan': 'Vanuatu',
@@ -640,4 +651,5 @@ const languageToCountry = {
     'Yemeni': 'Yemen',
     'Zambian': 'Zambia',
     'Zimbabwean': 'Zimbabwe',
+    'Malay': 'Malaysia',
 }

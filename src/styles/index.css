@@ -5,8 +5,12 @@
   -o-background-size: cover;
   background-size: cover;
 } */
+html {
+  background-color: black;
+    color: white;
+    font-family: Futura,Trebuchet MS,Arial,sans-serif; 
+}
 
-/* 
 .img-box {
   background-size: cover;
   position: absolute; 
@@ -20,7 +24,7 @@
 iframe {
   height: 100%;
   width: 100%;
-} */
+}
 
 
 .head-banner {
@@ -29,6 +33,7 @@ iframe {
   left: 0; 
   background-color: rgb(61, 61, 166); 
   width: 100%;
+  height: 35px;
   text-align: center;
   font-size: 30px;
   padding-top: 10px;
@@ -40,7 +45,7 @@ iframe {
 #globediv {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 137px;
+  margin-top: 187px;
 }
 
 
@@ -56,7 +61,7 @@ iframe {
   position: absolute;
     margin-left: 49.3%;
     margin-right: -50%;
-    top: 95px;
+    top: 98px;
     transform: translate(-50%, -50%);
     margin-top: 10px;
     font-size: 30px;
@@ -65,7 +70,7 @@ iframe {
   position: absolute;
     margin-left: 49.3%;
     margin-right: -50%;
-    top: 150px;
+    top: 153px;
     transform: translate(-50%, -50%);
     font-size: 12px;
     width: 62%;
@@ -103,15 +108,27 @@ iframe {
     text-align: center;
     z-index: -3;
 }
-#languages {
-  position: absolute;
-    margin-left: 12.4%;
+#country-list {
+ position: absolute;
+    margin-left: 83.5%;
     margin-right: -70%;
-    top: 108px;
+    top: 398px;
     transform: translate(-50%, -50%);
     font-size: 15px;
+    width: 10%;
+    text-align: center;
+    z-index: 2;
+}
+#countries {
+  position: absolute;
+    margin-left: 49.3%;
+    margin-right: -70%;
+    top: 208px;
+    transform: translate(-50%, -50%);
+    font-size: 1px;
     width: 30%;
     text-align: center;
+    z-index: -3;
 }
 
 
@@ -119,4 +136,30 @@ iframe {
   width: 210px;
 }
 
+button {
+  border-radius: 10px;
+    color: black;
+    border: none;
+}
 
+#etymologenius {
+    z-index: 3;
+    position: absolute;
+    margin-left: 49.3%;
+    margin-right: -50%;
+    top: 26px;
+    font-size: 30px;
+    transform: translate(-50%, -50%);
+}
+
+#placeholder-text {
+  position: absolute;
+    margin-left: 49.3%;
+    margin-right: -50%;
+    top: 121px;
+    transform: translate(-50%, -50%);
+    margin-top: 10px;
+    font-size: 20px;
+    width: 40%;
+    text-align: center;
+}

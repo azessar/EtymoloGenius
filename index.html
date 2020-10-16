@@ -63,6 +63,17 @@
 
       const lineSeries = chart.series.push(new am4maps.MapLineSeries());
 
+      var polygonTemplate = polygonSeries.mapPolygons.template;
+        polygonTemplate.events.on("hit", function (ev) {
+          // zoom to an object
+          // ev.target.series.chart.zoomToMapObject(ev.target);
+
+          // get object info
+          let country = ev.target.dataItem.dataContext.name
+          let randomWord = randomWordTable[country][0];
+          document.getElementById('searchBar').value = randomWord;
+          searchOutput();
+        });
       
 
       function searchOutput() {
@@ -73,7 +84,7 @@
 
           // fetching from dictionary API
           const app_id = "aefa1dac"; // insert your APP Id
-          const app_key = "11e3bb87b4b4fa64832a3ce1570ff663"; // insert your APP Key
+          const app_key = "1e8c992f693502d23d8452f68491a134"; // insert your APP Key
           const wordId = userInput;
           // const fields = "etymologies";
           const strictMatch = "false";
@@ -146,7 +157,7 @@
               findCoordinates();
               resetSearch();
             })
-            .catch(error => window.alert("Oops, we don't have access to that word at the moment, or you might have to reset the API key."));
+            .catch(error => window.alert("Oops, we don't have access to that at the moment."));
           // .then(data => console.log(data.results[0].lexicalEntries[0].entries[0].etymologies[0]));
 
 

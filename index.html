@@ -152,7 +152,7 @@
               document.getElementById('part-of-speech').innerHTML = partOfSpeech;
               document.getElementById('pronunciation').innerHTML = pronunciation;
               document.getElementById('definition').innerHTML = etymologyText + ";" + " " + definition;
-              document.getElementById('country-list').innerHTML = capitalize(userInput) + extractCountries(etymologyText);
+              document.getElementById('country-list').innerHTML = capitalize(userInput) + extractCountries(etymologyText + " " + definition);
               extractTime(etymologyText);
               findCoordinates();
               resetSearch();

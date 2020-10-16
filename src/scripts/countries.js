@@ -7,12 +7,21 @@ function extractCountries(text) {
         return punctuation.indexOf(char) === -1;
     });
     let cleanString = cleanLetters.join('');
+    if (cleanString.includes('Latin America')) {
+        wordLanguages.push('Spanish');
+        wordCountries.push('Latin America');
+    }
     let words = cleanString.split(" ");
-    words.forEach(word => {
+    words.forEach((word) => {
         (Object.keys(languageToCountry).includes(word) && !wordLanguages.includes(word)) ? wordLanguages.push(word) : null;
         (Object.keys(languageToCountry).includes(word) && !wordCountries.includes(languageToCountry[word])) ? wordCountries.push(languageToCountry[word]) : null;
         (Object.values(languageToCountry).includes(word) && !wordCountries.includes(word)) ? wordCountries.push(word) : null; //in case the country is listed in the etymology instead of language (see Panda)
     });
+    if (cleanString.includes('Latin America')) {
+        wordCountries = wordCountries.filter(item => item !== "Italy" && item !== "the United States" && item !== "United States")
+    }
+
+
     const countryText = " came from what is present day " + makeCountryText(wordCountries.reverse());
     document.getElementById('countries').innerHTML = wordCountries.reverse();
     return countryText;
@@ -220,6 +229,7 @@ const latAndLongs = {
     'Maldives': { 'latitude': 3.202778, 'longitude': 73.22068 },
     'Malawi': { 'latitude': -13.254308, 'longitude': 34.301525 },
     'Mexico': { 'latitude': 23.634501, 'longitude': -102.552784 },
+    'Latin America': { 'latitude': 17.634501, 'longitude': -97.552784 },
     'Malaysia': { 'latitude': 4.210484, 'longitude': 101.975766 },
     'Mozambique': { 'latitude': -18.665695, 'longitude': 35.529562 },
     'Namibia': { 'latitude': -22.95764, 'longitude': 18.49041 },
@@ -292,7 +302,7 @@ const latAndLongs = {
     'Tanzania': { 'latitude': -6.369028, 'longitude': 34.888822 },
     'Ukraine': { 'latitude': 48.379433, 'longitude': 31.16558 },
     'Uganda': { 'latitude': 1.373333, 'longitude': 32.290275 },
-    'United States': { 'latitude': 39.8283, 'longitude': -98.5795 },
+    'the United States': { 'latitude': 39.8283, 'longitude': -98.5795 },
     'Hawaii': { 'latitude': 19.8968, 'longitude': -155.5828 },
     'South Africa': { 'latitude': -30.5595, 'longitude': 22.9375 },
     'Venezuela': { 'latitude': 6.4238, 'longitude': -66.5897 },
@@ -355,10 +365,10 @@ const languageToCountry = {
     "Javanese": "Indonesia",
     "Filipino": "Philippines",
     "Hawaiian": "Hawaii",
-    "Alaskan": "United States",
+    "Alaskan": "the United States",
     "Sundanese": "Indonesia",
     "Tagalog": "Philippines",
-    "Cherokee": "United States",
+    "Cherokee": "the United States",
     "Aztec": "Mexico",
     "Mayan": "Mexico",
     "Japanese": "Japan",
@@ -385,7 +395,7 @@ const languageToCountry = {
     "Inca": "India",
     "Aboriginal": "Australia",
     "Maori": "New Zealand",
-    "Navajo": "United States",
+    "Navajo": "the United States",
     "Latin": "Italy",
     "Russian": "Russia",
     "Danish": "Denmark",
@@ -395,13 +405,13 @@ const languageToCountry = {
     "African": "Niger",
     "Kongo": "Congo [DRC]",
     "Kikongo": "Congo [DRC]",
-    "Sioux": "United States",
-    "Apache": "United States",
-    "Choctaw": "United States",
+    "Sioux": "the United States",
+    "Apache": "the United States",
+    "Choctaw": "the United States",
     "Brazilian": "Brazil",
     "Dharuk": "Australia",
     "Nahuatl": "Mexico",
-    "Algonquian": "United States",
+    "Algonquian": "the United States",
     "Taino": "Dominican Republic",
     "Arawak": "Venezuela",
     'Afghan': 'Afghanistan',
@@ -640,7 +650,7 @@ const languageToCountry = {
     'Ukrainian': 'Ukraine',
     'Emirati, Emirian, Emiri': 'United Arab Emirates',
     'British, United Kingdom, UK': 'United Kingdom of Great Britain and Northern Ireland',
-    'American': 'United States',
+    'American': 'the United States',
     'Uruguayan': 'Uruguay',
     'Uzbekistani, Uzbek': 'Uzbekistan',
     'Ni-Vanuatu, Vanuatuan': 'Vanuatu',

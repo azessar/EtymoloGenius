@@ -46,17 +46,21 @@ function extractTime(text) {
     let cleanString = cleanLetters.join('');
     let words = cleanString.split(" ");
     const centuryArray = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st"];
-    const decadeArray = ["1800s", "1820s", "1830s", "1840s", "1850s", "1860s", "1870s", "1880s", "1890s", "1900s", "1910s", "1920s", "1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s"]
+    const decadeArray = ["1800s", "1820s", "1830s", "1840s", "1850s", "1860s", "1870s", "1880s", "1890s", "1900s", "1910s", "1920s", "1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s"];
+    let wordHits = 0;
     words.forEach(word => {
             if (centuryArray.includes(word)) {
-                let century = `${word} century`;
-                document.getElementById('time').innerHTML = century;
+                let century = `Came to English around the ${word} century`;
+                document.getElementById('other-info').innerHTML = century;
+                wordHits += 1;
             } else if (decadeArray.includes(word)) {
-                let decade = `${word}`;
-                document.getElementById('time').innerHTML = decade;
+                let decade = `Came to english around the ${word}`;
+                document.getElementById('other-info').innerHTML = decade;
+                wordHits += 1;
             }
         } 
     )
+    wordHits === 0 ? document.getElementById('other-info').innerHTML = "Unknown when this word came to English" : null;
 }
 
 

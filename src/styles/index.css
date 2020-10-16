@@ -163,3 +163,15 @@ button {
     width: 40%;
     text-align: center;
 }
+
+#other-info {
+ position: absolute;
+    margin-left: 17.5%;
+    margin-right: -70%;
+    top: 398px;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    width: 10%;
+    text-align: center;
+    z-index: 2;
+}

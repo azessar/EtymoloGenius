@@ -29,6 +29,7 @@
   <div id="pronunciation"></div>
   <div id="definition"></div>
   <div id="country-list"></div>
+  <div id="other-info"></div>
 
    
     
@@ -124,22 +125,21 @@
             return answer;
           }
 
+      
+
           fetch(bigURL, { headers: { "app_id": app_id, "app_key": app_key } })
             .then(response => response.json())
             .then(data => {
-              console.log(data)
               const etymologyText = data.results[0].lexicalEntries[0].entries[0].etymologies[0];
               const partOfSpeech = data.results[0].lexicalEntries[0].lexicalCategory["id"];
               const definition = data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
               const pronunciation = data.results[0].lexicalEntries[0].entries[0].pronunciations[0].phoneticSpelling;
-              // const example = data.results[0].lexicalEntries[0].entries[0].senses[0].examples[0];
-              // console.log(example)
               document.getElementById('etymologies').innerHTML = etymologyText;
               document.getElementById('part-of-speech').innerHTML = partOfSpeech;
               document.getElementById('pronunciation').innerHTML = pronunciation;
               document.getElementById('definition').innerHTML = etymologyText + ";" + " " + definition;
               document.getElementById('country-list').innerHTML = capitalize(userInput) + extractCountries(etymologyText);
-              // extractTime(etymologyText);
+              extractTime(etymologyText);
               findCoordinates();
               resetSearch();
             })

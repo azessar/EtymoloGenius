@@ -19,7 +19,7 @@
   <div class="head-banner"> </div>
   <div id="etymologenius">EtymoloGenius</div>
 
-  <form class="search-form">
+  <form class="search-form" onsubmit="searchOutput();return false">
     <input type="text" id="searchBar" placeholder="Lookup a word...">
     <button id="submit" type="button" onclick="searchOutput()">Go!</button>
   </form>
@@ -55,6 +55,7 @@
 
     <script>
 
+
       function resetSearch() {
         let searched = document.getElementById('searchBar');
         searched.value = '';
@@ -62,8 +63,10 @@
 
       const lineSeries = chart.series.push(new am4maps.MapLineSeries());
 
+      
 
       function searchOutput() {
+          
           var userInput = document.getElementById('searchBar').value;
           document.getElementById("placeholder-text").style.display = "none";
           document.getElementById('output').innerHTML = userInput;
@@ -151,7 +154,7 @@
 
           // finish fetching from dictionary API
         }
-
+        
 
     </script>
 </body>

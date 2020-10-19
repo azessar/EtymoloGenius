@@ -15,9 +15,31 @@
   <title>EtymoloGenius</title>
 </head>
 
+<div id="modal-background" onclick="modalDisappears()"></div>
+<div id="modal">
+  <div>How To Use</div>
+  <p>
+    Pick a word, any word, and let EtymoloGenius plot its path from various origin languages and countries to modern day English, or click on a country to see an example word. All queries are made to the Oxford English Dictionary API. (NOTE: Plotted paths are approximate and are mostly (but not always) in the correct order. This algorithm is consistently updated. Not all countries contain recorded words connected to English.)
+    <br>
+    <br>
+    Interesting words to try: barbecue, biology, mohawk.
+    <br>
+    <br>
+    See any errors? Message me on LinkedIn!
+  </p>
+</div>
+
 <body>
   <div class="head-banner"> </div>
   <div id="etymologenius">EtymoloGenius</div>
+  <div id="info-headers">
+    <div onclick="modalAppears()">How to use</div>
+    <a href="https://www.linkedin.com/in/andrew-zessar-93067192/">LinkedIn</a>
+    <a href="https://github.com/azessar/EtymoloGenius">Github</a>
+  </div>
+  <div id="oxford">
+    All definitions, etymologies, and pronunciations pulled from the Oxford Dictionary API
+  </div>
 
   <form class="search-form" onsubmit="searchOutput();return false">
     <input type="text" id="searchBar" placeholder="Lookup a word...">
@@ -55,6 +77,14 @@
 
     <script>
 
+      function modalAppears(){
+        document.getElementById("modal-background").style.display = "inline";
+        document.getElementById("modal").style.display = "inline";
+      }
+      function modalDisappears() {
+          document.getElementById("modal-background").style.display = "none";
+          document.getElementById("modal").style.display = "none";
+        }
 
       function resetSearch() {
         let searched = document.getElementById('searchBar');

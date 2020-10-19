@@ -672,6 +672,7 @@ const languageToCountry = {
     'Zimbabwean': 'Zimbabwe',
     'Malay': 'Malaysia',
     'Buenos Aires': 'Argentina',
+    'Buenos': 'Argentina',
     'Vienna': 'Austria',
     'Tibet': 'China',
     'Flemmish': 'Belgium',

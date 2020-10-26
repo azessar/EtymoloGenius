@@ -525,7 +525,7 @@ const languageToCountry = {
     'Indonesian': 'Indonesia',
     'Iranian, Persian': 'Iran, Islamic Republic of',
     'Iraqi': 'Iraq',
-    'Irish': 'Ireland[j]',
+    'Irish': 'Ireland',
     'Manx': 'Isle of Man',
     'Israeli, Israelite': 'Israel',
     'Italian': 'Italy',
@@ -656,7 +656,6 @@ const languageToCountry = {
     'British, United Kingdom, UK': 'United Kingdom of Great Britain and Northern Ireland',
     'British': 'United Kingdom',
     'Scottish': 'United Kingdom',
-
     'American': 'the United States',
     'Uruguayan': 'Uruguay',
     'Uzbekistani, Uzbek': 'Uzbekistan',

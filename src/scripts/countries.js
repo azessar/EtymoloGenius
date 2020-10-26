@@ -694,7 +694,7 @@ const randomWordTable = {
     'Armenia': ['lavash'],
     'Netherlands Antilles': ['We do not have a word from here at the moment'],
     'Angola': ['We do not have a word from here at the moment'],
-    'Antarctica': ['We do not have a word from here'],
+    'Antarctica': ['We do not have a word from here at the moment'],
     'Argentina': ['tango'],
     'American Samoa': ['We do not have a word from here at the moment'],
     'Austria': ['wiener'],

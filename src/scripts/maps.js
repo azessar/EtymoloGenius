@@ -35,3 +35,5 @@ chart.backgroundSeries.toBack();
 chart.backgroundSeries.mapPolygons.template.nonScaling = true;
 chart.backgroundSeries.mapPolygons.template.nonScalingStroke = true;
 
+polygonSeries.calculateVisualCenter = true;
+

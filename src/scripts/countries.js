@@ -613,7 +613,6 @@ const languageToCountry = {
     'Sammarinese': 'San Marino',
     'São Toméan': 'São Tomé and Príncipe',
     'Saudi': 'Saudi Arabia',
-    'Scottish': 'Scotland',
     'Senegalese': 'Senegal',
     'Serbian': 'Serbia',
     'Seychellois': 'Seychelles',
@@ -655,6 +654,9 @@ const languageToCountry = {
     'Ukrainian': 'Ukraine',
     'Emirati, Emirian, Emiri': 'United Arab Emirates',
     'British, United Kingdom, UK': 'United Kingdom of Great Britain and Northern Ireland',
+    'British': 'United Kingdom',
+    'Scottish': 'United Kingdom',
+
     'American': 'the United States',
     'Uruguayan': 'Uruguay',
     'Uzbekistani, Uzbek': 'Uzbekistan',

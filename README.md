@@ -6,8 +6,11 @@ EtymoloGenius is a visual representation of the etymologies of all words in the 
 * Users will enter an English word
 * EtymoloGenius will display the years and locations where and when that word's ancestors were used on a rotating globe
 
-## Wireframes
+## Initial Wireframe
 ![wireframe](/src/images/wireframe.png)
+
+## Final Product
+![wireframe](/src/images/final.png)
 
 ## Architecture and Technologies
 The project will require the following technologies:

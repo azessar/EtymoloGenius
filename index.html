@@ -1,239 +1,259 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
-<!-- <div class="img-box">
+  <!-- <div class="img-box">
   <iframe src="https://momento360.com/e/u/da66a83b51fc47b8a3c145c1557b8740?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium">
   </iframe>
 </div> -->
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="./dist/main.css" />
-  <title>EtymoloGenius</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./dist/main.css" />
+    <title>EtymoloGenius</title>
+  </head>
 
-<div id="modal-background" onclick="modalDisappears()"></div>
-<div id="modal">
-  <div>How To Use</div>
-  <p>
-    Pick a word, any word, and let EtymoloGenius plot its path from various origin languages and countries to modern day English, or click on a country to see an example word. All queries are made to the Oxford English Dictionary API. (NOTE: Plotted paths are approximate and are mostly (but not always) in the correct order. This algorithm is constantly updated. Not all countries contain recorded words connected to English. Word retrieval speed can be slow depending on API connection speed.)
-    <br>
-    <br>
-    Interesting words to try: barbecue, biology, mohawk.
-    <br>
-    <br>
-    See any errors? Message me on LinkedIn!
-  </p>
-</div>
-
-<body>
-  <div class="head-banner"> </div>
-  <div id="etymologenius">EtymoloGenius</div>
-  <div id="info-headers">
-    <div onclick="modalAppears()">How to use</div>
-    <a href="https://www.linkedin.com/in/andrew-zessar-93067192/" target="_blank">LinkedIn</a>
-    <a href="https://github.com/azessar/EtymoloGenius" target="_blank">Github</a>
+  <div id="modal-background" onclick="modalDisappears()"></div>
+  <div id="modal">
+    <div>How To Use</div>
+    <p>
+      Pick a word, any word, and let EtymoloGenius plot its path from various
+      origin languages and countries to modern day English, or click on a
+      country to see an example word. All queries are made to the Oxford English
+      Dictionary API. (NOTE: Plotted paths are approximate and are mostly (but
+      not always) in the correct order. This algorithm is constantly updated.
+      Not all countries contain recorded words connected to English. Word
+      retrieval speed can be slow depending on API connection speed.)
+      <br />
+      <br />
+      Interesting words to try: barbecue, biology, mohawk.
+      <br />
+      <br />
+      See any errors? Message me on LinkedIn!
+      <br />
+      <br />
+      NOTE: If normal words are not working, there is a CORS issue; go to:
+      https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/
+      and click to allow access.
+    </p>
   </div>
-  <div id="oxford">
-    All definitions, etymologies, and pronunciations pulled from the Oxford Dictionaries API
-  </div>
 
-  <form class="search-form" onsubmit="searchOutput();return false">
-    <input type="text" id="searchBar" placeholder="Lookup a word...">
-    <button id="submit" type="button" onclick="searchOutput()">Go!</button>
-  </form>
-  <div id="part-of-speech"></div>
-  <div id="output"></div>
-  <div id="placeholder-text">Welcome to EtymoloGenius! Simply submit a word, and watch its journey to English.</div>
-  <div id="pronunciation"></div>
-  <div id="definition"></div>
-  <div id="country-list"></div>
-  <div id="other-info"></div>
+  <body>
+    <div class="head-banner"></div>
+    <div id="etymologenius">EtymoloGenius</div>
+    <div id="info-headers">
+      <div onclick="modalAppears()">How to use</div>
+      <a
+        href="https://www.linkedin.com/in/andrew-zessar-93067192/"
+        target="_blank"
+        >LinkedIn</a
+      >
+      <a href="https://github.com/azessar/EtymoloGenius" target="_blank"
+        >Github</a
+      >
+    </div>
+    <div id="oxford">
+      All definitions, etymologies, and pronunciations pulled from the Oxford
+      Dictionaries API
+    </div>
 
-   
-    
-      
-  <div id="etymologies"></div>
-  <div id="countries">countries</div>
-  <!-- <div id="time">time</div> -->
- 
-    
+    <form class="search-form" onsubmit="searchOutput();return false">
+      <input type="text" id="searchBar" placeholder="Lookup a word..." />
+      <button id="submit" type="button" onclick="searchOutput()">Go!</button>
+    </form>
+    <div id="part-of-speech"></div>
+    <div id="output"></div>
+    <div id="placeholder-text">
+      Welcome to EtymoloGenius! Simply submit a word, and watch its journey to
+      English.
+    </div>
+    <div id="pronunciation"></div>
+    <div id="definition"></div>
+    <div id="country-list"></div>
+    <div id="other-info"></div>
+
+    <div id="etymologies"></div>
+    <div id="countries">countries</div>
+    <!-- <div id="time">time</div> -->
 
     <script src="./src/scripts/countries.js"></script>
-    
-  
-
-
 
     <script src="//cdn.amcharts.com/lib/4/core.js"></script>
     <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
     <script src="//cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
-    <div id="globediv" style="width: 475px; height: 475px;"></div>
+    <div id="globediv" style="width: 475px; height: 475px"></div>
 
     <script src="./src/scripts/maps.js"></script>
 
     <script>
-
-      function modalAppears(){
+      function modalAppears() {
         document.getElementById("modal-background").style.display = "inline";
         document.getElementById("modal").style.display = "inline";
       }
       function modalDisappears() {
-          document.getElementById("modal-background").style.display = "none";
-          document.getElementById("modal").style.display = "none";
-        }
+        document.getElementById("modal-background").style.display = "none";
+        document.getElementById("modal").style.display = "none";
+      }
 
       function resetSearch() {
-        let searched = document.getElementById('searchBar');
-        searched.value = '';
+        let searched = document.getElementById("searchBar");
+        searched.value = "";
       }
 
       const lineSeries = chart.series.push(new am4maps.MapLineSeries());
 
       //click on country
       var polygonTemplate = polygonSeries.mapPolygons.template;
-        polygonTemplate.events.on("hit", function (ev) {
-          // zoom to an object
-          // ev.target.series.chart.zoomToMapObject(ev.target);
+      polygonTemplate.events.on("hit", function (ev) {
+        // zoom to an object
+        // ev.target.series.chart.zoomToMapObject(ev.target);
 
-          // get object info
-          let country = ev.target.dataItem.dataContext.name
-          let randomWord = randomWordTable[country][0];
-          if (randomWord === "We do not have a word from here at the moment") {
-            resetSearch();
-            document.getElementById('etymologies').innerHTML = "";
-            document.getElementById('part-of-speech').innerHTML = "";
-            document.getElementById('pronunciation').innerHTML = "";
-            document.getElementById('definition').innerHTML = "";
-            document.getElementById('country-list').innerHTML = "";
-            document.getElementById('other-info').innerHTML = "";
-            document.getElementById('output').innerHTML = "";
-            lineSeries.data = [];
-            window.alert("Oops, we don't have access to that at the moment.");
-          } else { 
-            document.getElementById('searchBar').value = randomWord;
-            searchOutput();
-          }
-          
-        });
-      
+        // get object info
+        let country = ev.target.dataItem.dataContext.name;
+        let randomWord = randomWordTable[country][0];
+        if (randomWord === "We do not have a word from here at the moment") {
+          resetSearch();
+          document.getElementById("etymologies").innerHTML = "";
+          document.getElementById("part-of-speech").innerHTML = "";
+          document.getElementById("pronunciation").innerHTML = "";
+          document.getElementById("definition").innerHTML = "";
+          document.getElementById("country-list").innerHTML = "";
+          document.getElementById("other-info").innerHTML = "";
+          document.getElementById("output").innerHTML = "";
+          lineSeries.data = [];
+          window.alert("Oops, we don't have access to that at the moment.");
+        } else {
+          document.getElementById("searchBar").value = randomWord;
+          searchOutput();
+        }
+      });
 
       function searchOutput() {
-          
-          var userInput = document.getElementById('searchBar').value;
+        var userInput = document.getElementById("searchBar").value;
 
-          document.getElementById("placeholder-text").style.display = "none";
-          document.getElementById('output').innerHTML = userInput;
+        document.getElementById("placeholder-text").style.display = "none";
+        document.getElementById("output").innerHTML = userInput;
 
-          // fetching from dictionary API
-          const app_id = "53d4ce16"; // insert your APP Id
-          const app_key = "9ae9d59011608cb2d5d8a661d354b49d"; // insert your APP Key
-          const wordId = userInput;
-          // const fields = "etymologies";
-          const strictMatch = "false";
+        // fetching from dictionary API
+        const app_id = "53d4ce16"; // insert your APP Id
+        const app_key = "9ae9d59011608cb2d5d8a661d354b49d"; // insert your APP Key
+        const wordId = userInput;
+        // const fields = "etymologies";
+        const strictMatch = "false";
 
-          const endpoint = "entries";
-          const languageCode = "en-us";
+        const endpoint = "entries";
+        const languageCode = "en-us";
 
-          const countries = ["United Kingdom"];
+        const countries = ["United Kingdom"];
 
+        const bigURL =
+          "https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/" +
+          endpoint +
+          "/" +
+          languageCode +
+          "/" +
+          wordId.toLowerCase();
 
-          const bigURL = "https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v2/" + endpoint + "/" + languageCode + "/" + wordId.toLowerCase()
-
-          function findCoordinates() {
-            let countryArray = document.getElementById('countries').innerHTML.split(",");
-            let coords = [];
-            countryArray.forEach(country => {
-              coords.push(latAndLongs[country]);
-            });
-            if (coords.length === 0) {
-              return null
-            } else {
-              drawLines(coords);
-              panToOriginCountry(coords.reverse()[0]);
-            }      
+        function findCoordinates() {
+          let countryArray = document
+            .getElementById("countries")
+            .innerHTML.split(",");
+          let coords = [];
+          countryArray.forEach((country) => {
+            coords.push(latAndLongs[country]);
+          });
+          if (coords.length === 0) {
+            return null;
+          } else {
+            drawLines(coords);
+            panToOriginCountry(coords.reverse()[0]);
           }
-
-
-          function drawLines(coordsArray) {
-            lineSeries.data = [{
-              "multiGeoLine": [
-                coordsArray
-              ]
-            }];
-          }
-
-          function panToOriginCountry(coordsPair) {
-            chart.animate([{
-              property: "deltaLongitude",
-              to: -coordsPair["longitude"]
-            }, {
-              property: "deltaLatitude",
-              to: -coordsPair["latitude"]
-            }], 1000)
-          }
-
-          function capitalize(string) {
-            answer = "";
-            let chars = string.split("");
-            chars.forEach((char,i) => {
-              i === 0 ? answer += char.toUpperCase() : answer += char
-            })
-            return answer;
-          }
-
-      
-
-          fetch(bigURL, { headers: { "app_id": app_id, "app_key": app_key } })
-            .then(response => response.json())
-            .then(data => {
-              resetSearch();
-              document.getElementById('etymologies').innerHTML = "";
-              document.getElementById('part-of-speech').innerHTML = "";
-              document.getElementById('pronunciation').innerHTML = "";
-              document.getElementById('definition').innerHTML = "";
-              document.getElementById('country-list').innerHTML = "";
-              document.getElementById('other-info').innerHTML = "";
-              const etymologyText = data.results[0].lexicalEntries[0].entries[0].etymologies[0];
-              const partOfSpeech = data.results[0].lexicalEntries[0].lexicalCategory["id"];
-              const definition = data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
-              const pronunciation = data.results[0].lexicalEntries[0].entries[0].pronunciations[0].phoneticSpelling;
-              
-              document.getElementById('etymologies').innerHTML = etymologyText;
-              
-              document.getElementById('part-of-speech').innerHTML = partOfSpeech;
-              
-              document.getElementById('pronunciation').innerHTML = pronunciation;
-              
-              document.getElementById('definition').innerHTML = etymologyText + ";" + " " + definition;
-              
-              document.getElementById('country-list').innerHTML = capitalize(userInput) + extractCountries(etymologyText + " " + definition);
-              extractTime(etymologyText);
-              findCoordinates();
-            })
-            .catch(error => {
-              resetSearch();
-              document.getElementById('etymologies').innerHTML = "";
-              document.getElementById('part-of-speech').innerHTML = "";
-              document.getElementById('pronunciation').innerHTML = "";
-              document.getElementById('definition').innerHTML = "";
-              document.getElementById('country-list').innerHTML = "";
-              document.getElementById('other-info').innerHTML = "";
-              window.alert("Oops, we don't have access to that at the moment.");
-            });
-          // .then(data => console.log(data.results[0].lexicalEntries[0].entries[0].etymologies[0]));
-
-
-
-
-          // finish fetching from dictionary API
         }
-        
 
+        function drawLines(coordsArray) {
+          lineSeries.data = [
+            {
+              multiGeoLine: [coordsArray],
+            },
+          ];
+        }
+
+        function panToOriginCountry(coordsPair) {
+          chart.animate(
+            [
+              {
+                property: "deltaLongitude",
+                to: -coordsPair["longitude"],
+              },
+              {
+                property: "deltaLatitude",
+                to: -coordsPair["latitude"],
+              },
+            ],
+            1000
+          );
+        }
+
+        function capitalize(string) {
+          answer = "";
+          let chars = string.split("");
+          chars.forEach((char, i) => {
+            i === 0 ? (answer += char.toUpperCase()) : (answer += char);
+          });
+          return answer;
+        }
+
+        fetch(bigURL, { headers: { app_id: app_id, app_key: app_key } })
+          .then((response) => response.json())
+          .then((data) => {
+            resetSearch();
+            document.getElementById("etymologies").innerHTML = "";
+            document.getElementById("part-of-speech").innerHTML = "";
+            document.getElementById("pronunciation").innerHTML = "";
+            document.getElementById("definition").innerHTML = "";
+            document.getElementById("country-list").innerHTML = "";
+            document.getElementById("other-info").innerHTML = "";
+            const etymologyText =
+              data.results[0].lexicalEntries[0].entries[0].etymologies[0];
+            const partOfSpeech =
+              data.results[0].lexicalEntries[0].lexicalCategory["id"];
+            const definition =
+              data.results[0].lexicalEntries[0].entries[0].senses[0]
+                .definitions[0];
+            const pronunciation =
+              data.results[0].lexicalEntries[0].entries[0].pronunciations[0]
+                .phoneticSpelling;
+
+            document.getElementById("etymologies").innerHTML = etymologyText;
+
+            document.getElementById("part-of-speech").innerHTML = partOfSpeech;
+
+            document.getElementById("pronunciation").innerHTML = pronunciation;
+
+            document.getElementById("definition").innerHTML =
+              etymologyText + ";" + " " + definition;
+
+            document.getElementById("country-list").innerHTML =
+              capitalize(userInput) +
+              extractCountries(etymologyText + " " + definition);
+            extractTime(etymologyText);
+            findCoordinates();
+          })
+          .catch((error) => {
+            resetSearch();
+            document.getElementById("etymologies").innerHTML = "";
+            document.getElementById("part-of-speech").innerHTML = "";
+            document.getElementById("pronunciation").innerHTML = "";
+            document.getElementById("definition").innerHTML = "";
+            document.getElementById("country-list").innerHTML = "";
+            document.getElementById("other-info").innerHTML = "";
+            window.alert("Oops, we don't have access to that at the moment.");
+          });
+        // .then(data => console.log(data.results[0].lexicalEntries[0].entries[0].etymologies[0]));
+
+        // finish fetching from dictionary API
+      }
     </script>
-</body>
-
+  </body>
 </html>

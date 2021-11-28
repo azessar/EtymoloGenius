@@ -7,14 +7,14 @@
 } */
 html {
   background-color: black;
-    color: white;
-    font-family: Futura,Trebuchet MS,Arial,sans-serif; 
+  color: white;
+  font-family: Futura, Trebuchet MS, Arial, sans-serif;
 }
 
 .img-box {
   background-size: cover;
-  position: absolute; 
-  top: 0; 
+  position: absolute;
+  top: 0;
   left: 0;
   height: 100%;
   width: 100%;
@@ -26,12 +26,11 @@ iframe {
   width: 100%;
 }
 
-
 .head-banner {
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  background-color: rgb(61, 61, 166); 
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(61, 61, 166);
   width: 100%;
   height: 35px;
   text-align: center;
@@ -48,89 +47,86 @@ iframe {
   margin-top: 187px;
 }
 
-
-
 .search-form {
-   position: absolute;
-    margin-left: 49.3%;
-    margin-right: -50%;
-    top: 75px;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  margin-left: 49.3%;
+  margin-right: -50%;
+  top: 75px;
+  transform: translate(-50%, -50%);
 }
 #output {
   position: absolute;
-    margin-left: 49.3%;
-    margin-right: -50%;
-    top: 98px;
-    transform: translate(-50%, -50%);
-    margin-top: 10px;
-    font-size: 30px;
+  margin-left: 49.3%;
+  margin-right: -50%;
+  top: 98px;
+  transform: translate(-50%, -50%);
+  margin-top: 10px;
+  font-size: 30px;
 }
 #definition {
   position: absolute;
-    margin-left: 49.3%;
-    margin-right: -50%;
-    top: 153px;
-    transform: translate(-50%, -50%);
-    font-size: 12px;
-    width: 62%;
-    text-align: center;
+  margin-left: 49.3%;
+  margin-right: -50%;
+  top: 153px;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  width: 62%;
+  text-align: center;
 }
 #part-of-speech {
   position: absolute;
-    margin-left: 64.3%;
-    margin-right: -70%;
-    top: 108px;
-    transform: translate(-50%, -50%);
-    font-size: 15px;
-    width: 30%;
-    text-align: center;
-    font-style: italic;
+  margin-left: 64.3%;
+  margin-right: -70%;
+  top: 108px;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  width: 30%;
+  text-align: center;
+  font-style: italic;
 }
 #pronunciation {
   position: absolute;
-    margin-left: 32.4%;
-    margin-right: -70%;
-    top: 108px;
-    transform: translate(-50%, -50%);
-    font-size: 15px;
-    width: 30%;
-    text-align: center;
+  margin-left: 32.4%;
+  margin-right: -70%;
+  top: 108px;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  width: 30%;
+  text-align: center;
 }
 #etymologies {
   position: absolute;
-    margin-left: 49.3%;
-    margin-right: -70%;
-    top: 208px;
-    transform: translate(-50%, -50%);
-    font-size: 1px;
-    width: 30%;
-    text-align: center;
-    z-index: -3;
+  margin-left: 49.3%;
+  margin-right: -70%;
+  top: 208px;
+  transform: translate(-50%, -50%);
+  font-size: 1px;
+  width: 30%;
+  text-align: center;
+  z-index: -3;
 }
 #country-list {
- position: absolute;
-    margin-left: 83.5%;
-    margin-right: -70%;
-    top: 398px;
-    transform: translate(-50%, -50%);
-    font-size: 15px;
-    width: 10%;
-    text-align: center;
-    z-index: 2;
+  position: absolute;
+  margin-left: 83.5%;
+  margin-right: -70%;
+  top: 398px;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  width: 10%;
+  text-align: center;
+  z-index: 2;
 }
 #countries {
   position: absolute;
-    margin-left: 49.3%;
-    margin-right: -70%;
-    top: 208px;
-    transform: translate(-50%, -50%);
-    font-size: 1px;
-    width: 30%;
-    text-align: center;
-    z-index: -3;
+  margin-left: 49.3%;
+  margin-right: -70%;
+  top: 208px;
+  transform: translate(-50%, -50%);
+  font-size: 1px;
+  width: 30%;
+  text-align: center;
+  z-index: -3;
 }
-
 
 #searchBar {
   width: 210px;
@@ -138,78 +134,78 @@ iframe {
 
 button {
   border-radius: 10px;
-    color: black;
-    border: none;
+  color: black;
+  border: none;
 }
 
 #etymologenius {
-    z-index: 3;
-    position: absolute;
-    margin-left: 49.3%;
-    margin-right: -50%;
-    top: 28px;
-    font-size: 30px;
-    transform: translate(-50%, -50%);
+  z-index: 3;
+  position: absolute;
+  margin-left: 49.3%;
+  margin-right: -50%;
+  top: 28px;
+  font-size: 30px;
+  transform: translate(-50%, -50%);
 }
 
 #placeholder-text {
   position: absolute;
-    margin-left: 49.3%;
-    margin-right: -50%;
-    top: 121px;
-    transform: translate(-50%, -50%);
-    margin-top: 10px;
-    font-size: 20px;
-    width: 40%;
-    text-align: center;
+  margin-left: 49.3%;
+  margin-right: -50%;
+  top: 121px;
+  transform: translate(-50%, -50%);
+  margin-top: 10px;
+  font-size: 20px;
+  width: 40%;
+  text-align: center;
 }
 
 #other-info {
- position: absolute;
-    margin-left: 17.5%;
-    margin-right: -70%;
-    top: 398px;
-    transform: translate(-50%, -50%);
-    font-size: 15px;
-    width: 10%;
-    text-align: center;
-    z-index: 2;
+  position: absolute;
+  margin-left: 17.5%;
+  margin-right: -70%;
+  top: 398px;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  width: 10%;
+  text-align: center;
+  z-index: 2;
 }
 
 #info-headers {
-    z-index: 3;
-    position: absolute;
-    margin-left: 79.3%;
-    margin-right: -50%;
-    top: 28px;
-    font-size: 15px;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: space-between;
-    width: 250px;
-    
+  z-index: 3;
+  position: absolute;
+  margin-left: 79.3%;
+  margin-right: -50%;
+  top: 28px;
+  font-size: 15px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
 }
 a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
-a:hover, #info-headers > div:hover {
+a:hover,
+#info-headers > div:hover {
   color: rgb(146, 146, 222);
   cursor: pointer;
 }
 
 #oxford {
-    z-index: 3;
-    position: absolute;
-    margin-left: 19.0%;
-    margin-right: -50%;
-    top: 28px;
-    font-size: 11px;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: space-between;
-    width: 250px;
-    text-align: center;
+  z-index: 3;
+  position: absolute;
+  margin-left: 19%;
+  margin-right: -50%;
+  top: 28px;
+  font-size: 11px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  text-align: center;
 }
 
 #modal-background {
@@ -225,17 +221,17 @@ a:hover, #info-headers > div:hover {
 }
 #modal {
   position: absolute;
-    left: 0;
-    width: 300px;
-    height: 400px;
-    margin-left: 50%;
-    margin-right: -50%;
-    top: 298px;
-    transform: translate(-50%, -50%);
-    background-color: black;
-    z-index: 11;
-    display: none;
-    border: 2px solid white;
+  left: 0;
+  width: 300px;
+  height: 450px;
+  margin-left: 50%;
+  margin-right: -50%;
+  top: 298px;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  z-index: 11;
+  display: none;
+  border: 2px solid white;
 }
 #modal > div {
   font-size: 25px;

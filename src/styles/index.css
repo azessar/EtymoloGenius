@@ -242,3 +242,7 @@ a:hover,
   font-size: 11px;
   margin: 10%;
 }
+
+.corslink {
+  text-decoration: underline;
+}
